@@ -8,8 +8,8 @@ export default function PhotoList({ photos, refresh }) {
             await supabase.storage
                 .from("wedding-gallery")
                 .remove([
-                    photo.image_url.split("/").pop(),
-                    photo.thumbnail_url.split("/").pop(),
+                    photo.image_path,
+                    photo.thumbnail_path,
                 ]);
 
             await supabase

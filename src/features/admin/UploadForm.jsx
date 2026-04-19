@@ -2,10 +2,12 @@ import { useState } from "react";
 import { uploadImage } from "../../services/admin/uploadService";
 import { savePhoto } from "../../services/admin/adminService";
 import { Form, Button, Spinner } from "react-bootstrap";
+import { useToast } from "../../hooks/useToast";
 
 export default function UploadForm({ onUploadSuccess }) {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { showToast } = useToast();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,13 +17,17 @@ export default function UploadForm({ onUploadSuccess }) {
     setLoading(true);
 
     try {
-      const { image_url, thumbnail_url } = await uploadImage(file);
+      const { image_url, thumbnail_url, image_path, thumbnail_path } = await uploadImage(file);
 
       await savePhoto({
         title: file.name,
         image_url,
         thumbnail_url,
+        image_path,
+        thumbnail_path,
       });
+
+      showToast("Upload terminé")
 
       // 🔥 refresh parent
       await onUploadSuccess();
@@ -31,6 +37,7 @@ export default function UploadForm({ onUploadSuccess }) {
       e.target.reset();
 
     } catch (err) {
+      showToast("Erreur upload", "danger")
       console.error(err);
     }
 

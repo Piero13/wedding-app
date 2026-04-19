@@ -4,6 +4,7 @@ import { supabase } from "../services/supabase/supabaseClient";
 import { validateAccessCode } from "../services/auth/accessService";
 import { Form, Button, Container, Alert } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
+import { useToast } from "../hooks/useToast"
 
 /**
  * Login page for admin and guests
@@ -17,22 +18,20 @@ export default function Login() {
     password: "",
     code: ""
   });
-  const [error, setError] = useState(null);
+  const { showToast } = useToast();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleAdminLogin = async () => {
-    setError(null);
-
     const { error } = await supabase.auth.signInWithPassword({
       email: form.email,
       password: form.password,
     });
 
     if (error) {
-        setError(error.message)
+        showToast("Email ou mot de passe invalide", "danger")
         return
     };
 
@@ -43,7 +42,7 @@ export default function Login() {
     const data = await validateAccessCode(form.code);
 
     if (!data) {
-      setError("Invalid access code");
+      showToast("Code d'accès invalide", "danger")
       return;
     }
 
@@ -72,8 +71,6 @@ export default function Login() {
           Admin
         </Button>
       </div>
-
-      {error && <Alert variant="danger">{error}</Alert>}
 
       {isAdmin ? (
         <div className="w-lg-50 mx-auto border border-2 border-primary p-4 rounded d-flex flex-column align-items-center">
@@ -116,7 +113,13 @@ export default function Login() {
             </div>
           </Form.Group>
 
-          <Button onClick={handleAdminLogin}>Connexion admin</Button>
+          <Button 
+            variant="primary"
+            className="w-10 border-primaryDark bs-dark"
+            onClick={handleAdminLogin}
+          >
+            Connexion
+          </Button>
         </div>
       ) : (
         <div className="w-md-60 w-lg-50 mx-auto border border-2 border-primary p-4 rounded d-flex flex-column align-items-center">

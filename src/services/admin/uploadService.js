@@ -50,6 +50,8 @@ export const uploadImage = async (file) => {
     return {
       image_url: originalUrl.publicUrl,
       thumbnail_url: thumbUrl.publicUrl,
+      image_path: originalPath,
+      thumbnail_path: thumbPath,
     };
 
   } catch (err) {
