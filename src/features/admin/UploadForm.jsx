@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { uploadImage } from "../../services/admin/uploadService";
-import { savePhoto } from "../../services/adminService";
+import { savePhoto } from "../../services/admin/adminService";
 import { Form, Button, Spinner } from "react-bootstrap";
 
 /**

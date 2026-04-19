@@ -19,7 +19,8 @@ export const savePhoto = async (photo) => {
 export const fetchPhotos = async () => {
     const { data, error } = await supabase
         .from("photos")
-        .select("*");
+        .select("*")
+        .order("created_at", { ascending: false });
 
     if (error) throw error;
 

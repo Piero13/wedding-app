@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { supabase } from "../../../services/supabase/supabaseClient";
-import { fetchPhotos as fetchPhotosService } from "../../../services/adminService";
+import { supabase } from "../../services/supabase/supabaseClient";
+import { fetchPhotos as fetchPhotosService } from "../../services/admin/adminService";
 import { Button, Image } from "react-bootstrap";
 
 export default function PhotoList() {

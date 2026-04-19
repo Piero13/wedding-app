@@ -1,5 +1,5 @@
 import imageCompression from "browser-image-compression";
-import supabase from "../supabase/supabaseClient";
+import { supabase } from "../supabase/supabaseClient";
 import { v4 as uuidv4 } from "uuid";
 
 /**
