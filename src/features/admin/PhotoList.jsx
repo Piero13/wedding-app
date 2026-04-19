@@ -1,23 +1,7 @@
-import { useEffect, useState } from "react";
 import { supabase } from "../../services/supabase/supabaseClient";
-import { fetchPhotos as fetchPhotosService } from "../../services/admin/adminService";
 import { Button, Image } from "react-bootstrap";
 
-export default function PhotoList() {
-    const [photos, setPhotos] = useState([]);
-
-    useEffect(() => {
-        const loadPhotos = async () => {
-            try {
-                const data = await fetchPhotosService();
-                setPhotos(data);
-            } catch (err) {
-                console.error("Error fetching photos:", err);
-            }
-        };
-
-        loadPhotos();
-    }, []);
+export default function PhotoList({ photos, refresh }) {
 
     const deletePhoto = async (photo) => {
         try {
@@ -33,9 +17,7 @@ export default function PhotoList() {
                 .delete()
                 .eq("id", photo.id);
 
-            // refresh
-            const data = await fetchPhotosService();
-            setPhotos(data);
+            await refresh();
         } catch (err) {
             console.error("Error deleting photo:", err);
         }

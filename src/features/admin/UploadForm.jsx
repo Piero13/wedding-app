@@ -3,10 +3,7 @@ import { uploadImage } from "../../services/admin/uploadService";
 import { savePhoto } from "../../services/admin/adminService";
 import { Form, Button, Spinner } from "react-bootstrap";
 
-/**
- * Upload form component
- */
-export default function UploadForm() {
+export default function UploadForm({ onUploadSuccess }) {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -26,7 +23,12 @@ export default function UploadForm() {
         thumbnail_url,
       });
 
-      alert("Upload successful");
+      // 🔥 refresh parent
+      await onUploadSuccess();
+
+      // 🔥 reset input
+      setFile(null);
+      e.target.reset();
 
     } catch (err) {
       console.error(err);
