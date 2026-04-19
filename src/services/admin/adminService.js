@@ -58,3 +58,40 @@ export const approveMessage = async (id) => {
     throw error;
   }
 };
+
+/**
+ * Fetch categories
+ */
+export const fetchCategories = async () => {
+  const { data, error } = await supabase
+    .from("photo_categories")
+    .select("*")
+    .order("name");
+
+  if (error) throw error;
+
+  return data;
+};
+
+/**
+ * Create category
+ */
+export const createCategory = async (name) => {
+  const { error } = await supabase
+    .from("photo_categories")
+    .insert([{ name }]);
+
+  if (error) throw error;
+};
+
+/**
+ * Update photo
+ */
+export const updatePhoto = async (id, updates) => {
+  const { error } = await supabase
+    .from("photos")
+    .update(updates)
+    .eq("id", id);
+
+  if (error) throw error;
+};
