@@ -55,16 +55,29 @@ export default function Login() {
     <Container className="py-5">
       <h2 className="text-center mb-4">Connexion</h2>
 
-      <div className="text-center mb-3">
-        <Button onClick={() => setIsAdmin(false)}>Invité</Button>{" "}
-        <Button onClick={() => setIsAdmin(true)}>Admin</Button>
+      <div className="text-center mb-5">
+        <Button 
+          variant="primary"
+          onClick={() => setIsAdmin(false)}
+          className="w-10 me-4 border-primaryDark bs-dark"
+        >
+          Invité
+        </Button>{" "}
+        
+        <Button
+          variant="primary"
+          onClick={() => setIsAdmin(true)}
+          className="w-10 border-primaryDark bs-dark"
+        >
+          Admin
+        </Button>
       </div>
 
       {error && <Alert variant="danger">{error}</Alert>}
 
       {isAdmin ? (
-        <>
-          <Form.Group className="mb-3">
+        <div className="w-lg-50 mx-auto border border-2 border-primary p-4 rounded d-flex flex-column align-items-center">
+          <Form.Group className="mb-3 w-100">
             <Form.Label>Email</Form.Label>
 
             <Form.Control
@@ -75,7 +88,7 @@ export default function Login() {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-3 w-100">
             <Form.Label>Mot de passe</Form.Label>
 
             <div className="position-relative">
@@ -104,10 +117,10 @@ export default function Login() {
           </Form.Group>
 
           <Button onClick={handleAdminLogin}>Connexion admin</Button>
-        </>
+        </div>
       ) : (
-        <>
-          <Form.Group className="mb-3">
+        <div className="w-md-60 w-lg-50 mx-auto border border-2 border-primary p-4 rounded d-flex flex-column align-items-center">
+          <Form.Group className="mb-3 w-100">
             <Form.Label>Code d'accès</Form.Label>
 
             <Form.Control
@@ -117,8 +130,14 @@ export default function Login() {
             />
           </Form.Group>
 
-          <Button onClick={handleGuestLogin}>Entrer</Button>
-        </>
+          <Button
+            variant="primary"
+            onClick={handleGuestLogin}
+            className="w-10 border-primaryDark bs-dark"
+          >
+            Entrer
+          </Button>
+        </div>
       )}
     </Container>
   );

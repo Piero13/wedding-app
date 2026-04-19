@@ -38,17 +38,27 @@ export default function UploadForm({ onUploadSuccess }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group>
-        <Form.Control
-          type="file"
-          onChange={(e) => setFile(e.target.files[0])}
-        />
-      </Form.Group>
+    <section className="mb-4">
+      <h3 className="fs-4 mb-3">Ajout de photo</h3>
+      <Form
+        onSubmit={handleSubmit}
+      >
+        <Form.Group className="mb-3">
+          <Form.Control
+            type="file"
+            onChange={(e) => setFile(e.target.files[0])}
+          />
+        </Form.Group>
 
-      <Button type="submit" disabled={loading}>
-        {loading ? <Spinner size="sm" /> : "Upload"}
-      </Button>
-    </Form>
+        <Button 
+          variant="primary"
+          className="w-10 border-primaryDark"
+          type="submit"
+          disabled={loading}
+        >
+          {loading ? <Spinner size="sm" /> : "Upload"}
+        </Button>
+      </Form>
+    </section>
   );
 }

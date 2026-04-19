@@ -31,7 +31,7 @@ export default function Admin() {
     
     return (
         <div className="container py-5">
-        <h2>Admin Dashboard</h2>
+        <h2 className="mb-4">Admin Dashboard</h2>
 
         <UploadForm onUploadSuccess={loadPhotos}/>
         <PhotoList photos={photos} refresh={loadPhotos}/>

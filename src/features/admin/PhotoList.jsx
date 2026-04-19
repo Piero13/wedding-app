@@ -1,5 +1,5 @@
 import { supabase } from "../../services/supabase/supabaseClient";
-import { Button, Image } from "react-bootstrap";
+import { Button, Image, Card } from "react-bootstrap";
 
 export default function PhotoList({ photos, refresh }) {
 
@@ -24,13 +24,26 @@ export default function PhotoList({ photos, refresh }) {
     };
 
     return (
-        <>
-            {photos.map((p) => (
-                <div key={p.id}>
-                    <Image src={p.thumbnail_url} width={100} />
-                    <Button onClick={() => deletePhoto(p)}>Delete</Button>
-                </div>
-            ))}
-        </>
+        <section>
+            <h3 className="fs-4 mb-3">Liste des photos</h3>
+
+            <div className="d-flex">
+                {photos.map((p) => (
+                    <Card 
+                        key={p.id}
+                        className="d-flex flex-column align-items-center justify-content-between p-2 mx-1 border-primary"
+                    >
+                        <Image src={p.thumbnail_url} width={100} />
+                        <Button
+                            variant="primary"
+                            className="mt-2 w-10 border-primaryDark"
+                            onClick={() => deletePhoto(p)}
+                        >
+                            Supprimer
+                        </Button>
+                    </Card>
+                ))}
+            </div>
+        </section>
     );
 }
