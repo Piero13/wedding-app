@@ -90,3 +90,19 @@ $spacers: (
     22: 600px,
     
 ) !default;
+
+$position-values: (
+    0: 0,
+    1: $spacer * .25,
+    2: $spacer * .5,
+    3: $spacer * .75,
+    4: $spacer,
+    5: $spacer * 1.25,
+    6: $spacer * 1.5,
+    7: $spacer * 1.75,
+    8: $spacer * 2,
+    9: $spacer * 2.25,
+    10: $spacer * 2.5,
+    50: 50%,
+    100: 100%
+) !default;
