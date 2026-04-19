@@ -1,3 +1,8 @@
+@import "./variables_overrides";
+@import "./utilities_custom";
+@import "./mixins";
+@import "bootstrap/scss/bootstrap";
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -21,4 +26,16 @@
   padding: 0;
   box-sizing: border-box;
   font-size: 14px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+.script {
+  font-family: 'Great Vibes', cursive;
 }

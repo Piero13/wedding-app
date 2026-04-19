@@ -1,0 +1,92 @@
+/*Colors*/
+$primary: #c9142c;
+$primary-light: #ff5762;
+$primary-dark: #9b0015;
+
+$secondary: #f8d7da;
+$secondary-light: #ffe3e5;
+$secondary-dark: #ffb7bd;
+
+$tertiary: #f205ab;
+$tertiary-light: #ff59cd;
+$tertiary-dark: #920066;
+
+$dark : #2b2b2b ;
+$light : #fff5f5;
+
+$blue:    #1512c0 !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #d63384 !default;
+$red:     #E04F5F !default;
+$orange:  #fd7e14 !default;
+$yellow:  #FFD24A !default;
+$green:   #31b97a !default;
+$teal:    #20c997 !default;
+$cyan:    #0dcaf0 !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+
+/*Font sizes*/
+$font-sizes: (
+    0: 1rem * 3,
+    1: 1rem * 2.5,
+    2: 1rem * 2,
+    3: 1rem * 1.75,
+    4: 1rem * 1.5,
+    5: 1rem * 1.25,
+    6: 1rem,
+    7: 1rem * 0.75,
+    8: 1rem * 0.5,
+) !default;
+
+/*Theme-colors*/
+$theme-colors: (
+  "primary":      $primary,
+  "primaryLight": $primary-light,
+  "primaryDark": $primary-dark,
+  "secondary":    $secondary,
+  "secondarylight": $secondary-light,
+  "secondaryDark": $secondary-dark,
+  "tertiary":     $tertiary,
+  "tertiaryLight": $tertiary-light,
+  "tertiaryDark": $tertiary-dark,
+  "dark":  $dark,
+  "light": $light,
+  "red":   $red,
+  "success":      $success,
+  "info":         $info,
+  "warning":      $warning,
+  "danger":       $danger,
+) !default;
+
+/*Spacers*/
+$spacer: 1rem !default;
+$spacers: (
+    0: 0,
+    1: $spacer * .25,
+    2: $spacer * .5,
+    3: $spacer,
+    4: $spacer * 1.5,
+    5: $spacer * 2,
+    6: $spacer * 2.5,
+    7: $spacer * 3,
+    8: 50px,
+    9: 75px,
+    10: 100px,
+    11: 125px,
+    12: 150px,
+    13: 175px,
+    14: 200px,
+    15: 250px,
+    16: 300px,
+    17: 350px,
+    18: 400px,
+    19: 450px,
+    20: 500px,
+    21: 550px,
+    22: 600px,
+    
+) !default;
