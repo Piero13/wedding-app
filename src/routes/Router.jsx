@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Admin from "../pages/Admin";
 import Gallery from "../pages/Gallery";
 import GoldenBook from "../pages/GoldenBook";
+import Guest from "../pages/Guest";
 
 import ProtectedAdminRoute from "./ProtectedAdminRoute";
 import ProtectedGuestRoute from "./ProtectedGuestRoute";
@@ -18,9 +19,19 @@ export default function Router() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
 
-        {/* Guest */}
+        {/* Guest */}        
         <Route
-          path="/gallery"
+          path="/guest"
+          element={
+            <ProtectedGuestRoute>
+              <Guest />
+            </ProtectedGuestRoute>
+          }
+        />
+
+
+        <Route
+          path="/guest/gallery"
           element={
             <ProtectedGuestRoute>
               <Gallery />
@@ -29,7 +40,7 @@ export default function Router() {
         />
 
         <Route
-          path="/guestbook"
+          path="/guest/guestbook"
           element={
             <ProtectedGuestRoute>
               <GoldenBook />

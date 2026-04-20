@@ -47,7 +47,7 @@ export default function Login() {
     }
 
     localStorage.setItem("guest_access", form.code);
-    navigate("/gallery");
+    navigate("/guest");
   };
 
   return (
