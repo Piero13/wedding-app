@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import UploadForm from "../features/admin/UploadForm";
 import PhotoList from "../features/admin/PhotoList";
 import GuestbookModeration from "../features/admin/GuestbookModeration";
-import CategoryManager from "../features/admin/CategotyManager"
+import CategoryManager from "../features/admin/CategoryManager"
 
 export default function Admin() {
     const [photos, setPhotos] = useState([]);

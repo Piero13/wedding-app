@@ -25,10 +25,10 @@ export default function GuestbookModeration() {
   useEffect(() => {
     const loadMessages = async () => {
         try {
-        const data = await fetchGuestbookMessages();
-        setMessages(data);
+          const data = await fetchGuestbookMessages();
+          setMessages(data);
         } catch (err) {
-        console.error(err);
+          console.error(err);
         }
     };
 
