@@ -11,6 +11,7 @@ export default function GalleryGrid({ photos, onSelect }) {
           <Image
             src={photo.thumbnail_url}
             fluid
+            loading="lazy"
             onClick={() => onSelect(photo)}
             style={{ cursor: "pointer" }}
           />

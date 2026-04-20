@@ -44,6 +44,7 @@ export default function GuestbookForm() {
         onChange={(e) =>
           setForm({ ...form, first_name: e.target.value })
         }
+        required
       />
 
       <Form.Control
@@ -74,9 +75,12 @@ export default function GuestbookForm() {
         onChange={(e) =>
           setForm({ ...form, message: e.target.value })
         }
+        required
       />
 
-      <Button type="submit">Envoyer</Button>
+      <Button type="submit" disabled={!form.message}>
+        Envoyer
+      </Button>
     </Form>
   );
 }

@@ -26,7 +26,9 @@ export default function Gallery() {
     const handleSearch = (value) => {
         setFiltered(
         photos.filter((p) =>
-            p.title?.toLowerCase().includes(value.toLowerCase())
+            (p.title + p.description)
+                ?.toLowerCase()
+                .includes(value.toLowerCase())
         )
         );
     };
