@@ -29,7 +29,7 @@ export default function Router() {
         />
 
         <Route
-          path="/livre-or"
+          path="/guestbook"
           element={
             <ProtectedGuestRoute>
               <GoldenBook />

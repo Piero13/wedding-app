@@ -13,6 +13,7 @@ export default function Filters({ onSearch, onCategory }) {
         const data = await fetchCategories();
         setCategories(data);
     };
+    
     load();
   }, []);
 
