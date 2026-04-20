@@ -1,7 +1,13 @@
+import { useState } from "react";
 import { supabase } from "../../services/supabase/supabaseClient";
+import { useToast } from "../../hooks/useToast";
 import { Button, Image, Card } from "react-bootstrap";
+import EditPhotoModal from "./EditPhotoModal";
 
 export default function PhotoList({ photos, refresh }) {
+    const[selectedPhoto, setSelectedPhoto] = useState(null);
+    const { showToast } = useToast();
+
 
     const deletePhoto = async (photo) => {
         try {
@@ -16,9 +22,12 @@ export default function PhotoList({ photos, refresh }) {
                 .from("photos")
                 .delete()
                 .eq("id", photo.id);
+            
+            showToast("Photo supprimée");
 
             await refresh();
         } catch (err) {
+            showToast("Erreur suppression", "danger")
             console.error("Error deleting photo:", err);
         }
     };
@@ -34,16 +43,34 @@ export default function PhotoList({ photos, refresh }) {
                         className="d-flex flex-column align-items-center justify-content-between p-2 mx-1 border-primary"
                     >
                         <Image src={p.thumbnail_url} width={100} />
-                        <Button
-                            variant="primary"
-                            className="mt-2 w-10 border-primaryDark"
-                            onClick={() => deletePhoto(p)}
-                        >
-                            Supprimer
-                        </Button>
+
+                        <div className="mt-2 d-flex flex-column align-items-center">
+                            <Button
+                                variant="secondary"
+                                className="w-10 border-primaryDark"
+                                onClick={() => setSelectedPhoto(p)}
+                            >
+                                Modifier
+                            </Button>
+                            <Button
+                                variant="primary"
+                                className="mt-2 w-10 border-primaryDark"
+                                onClick={() => deletePhoto(p)}
+                            >
+                                Supprimer
+                            </Button>
+                        </div>
+
                     </Card>
                 ))}
             </div>
+
+            <EditPhotoModal
+                key={selectedPhoto?.id}
+                photo={selectedPhoto}
+                onHide={() => setSelectedPhoto(null)}
+                onSave={refresh}
+            />
         </section>
     );
 }

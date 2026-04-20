@@ -56,7 +56,7 @@ export default function Login() {
 
       <div className="text-center mb-5">
         <Button 
-          variant="primary"
+          variant={isAdmin ? "secondary" : "primary"}
           onClick={() => setIsAdmin(false)}
           className="w-10 me-4 border-primaryDark bs-dark"
         >
@@ -64,7 +64,7 @@ export default function Login() {
         </Button>{" "}
         
         <Button
-          variant="primary"
+          variant={isAdmin ? "primary" : "secondary"}
           onClick={() => setIsAdmin(true)}
           className="w-10 border-primaryDark bs-dark"
         >
