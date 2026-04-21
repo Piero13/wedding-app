@@ -69,7 +69,7 @@ export default function Login() {
         <Button
           variant={!isAdmin ? "primary" : "secondary"}
           onClick={() => setIsAdmin(false)}
-          className="me-3"
+          className="w-9 me-3 border-primaryDark"
         >
           Invité
         </Button>
@@ -77,6 +77,7 @@ export default function Login() {
         <Button
           variant={isAdmin ? "primary" : "secondary"}
           onClick={() => setIsAdmin(true)}
+          className="w-9 border-primaryDark"
         >
           Admin
         </Button>
@@ -120,7 +121,11 @@ export default function Login() {
             <Form.Control name="code" onChange={handleChange} />
           </Form.Group>
 
-          <Button className="w-100" onClick={handleGuestLogin}>
+          <Button 
+            variant="primary" 
+            className="w-100 border-primaryDark" 
+            onClick={handleGuestLogin}
+          >
             Entrer
           </Button>
         </div>

@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Admin from "../pages/Admin";
 import Gallery from "../pages/Gallery";
 import GoldenBook from "../pages/GoldenBook";
+import GoldenBookPublic from "../pages/GoldenBookPublic";
 import Guest from "../pages/Guest";
 
 import ProtectedAdminRoute from "./ProtectedAdminRoute";
@@ -17,6 +18,7 @@ export default function Router() {
         {/* Public */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/guestbook/public" element={<GoldenBookPublic />} />
 
         {/* Guest */}        
         <Route

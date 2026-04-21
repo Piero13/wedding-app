@@ -6,21 +6,16 @@ import { useAuth } from "../../hooks/useAuth";
  * Main navigation bar
  */
 export default function AppNavbar() {
-  const { user, isAdmin, guest } = useAuth();
+  const { user, isAdmin, guest, logout } = useAuth();
   const navigate = useNavigate();
-  const { logout } = useAuth();
 
   const handleLogout = async () => {
     await logout();
     navigate("/");
   };
 
-  console.log(guest)
-  console.log(guest)
-  console.log(isAdmin)
-
   return (
-    <Navbar expand="lg" className="bg-white shadow-sm">
+    <Navbar expand="lg" className="bg-gradient-secondary shadow-sm">
       <Container>
         <Navbar.Brand as={Link} to="/">
           ❤️ Mariage
@@ -30,9 +25,17 @@ export default function AppNavbar() {
         <Navbar.Collapse>
           <Nav className="ms-auto align-items-center gap-2">
 
+            <Nav.Link className="nav-link" as={Link} to="/">
+              Home
+            </Nav.Link>
+
+            <Nav.Link className="nav-link" as={Link} to="/guestbook/public">
+              Livre d'or
+            </Nav.Link>
+
             {/* Non connecté */}
             {!user && !guest && (
-              <Nav.Link as={Link} to="/login">
+              <Nav.Link className="nav-link" as={Link} to="/login">
                 Connexion
               </Nav.Link>
             )}
@@ -40,16 +43,12 @@ export default function AppNavbar() {
             {/* Guest */}
             {guest && (
               <>
-                <span className="me-2">
-                  Bonjour {guest.name} ❤️
-                </span>
-
-                <Nav.Link as={Link} to="/guest">
+                <Nav.Link className="nav-link" as={Link} to="/guest">
                   Mon espace
                 </Nav.Link>
 
                 <Button
-                  variant="outline-danger"
+                  variant="outline-primary"
                   size="sm"
                   onClick={handleLogout}
                 >
@@ -61,16 +60,16 @@ export default function AppNavbar() {
             {/* Admin */}
             {isAdmin && (
               <>
-                <Nav.Link as={Link} to="/admin">
+                <Nav.Link className="nav-link" as={Link} to="/admin">
                   Admin
                 </Nav.Link>
 
                 <Button
-                  variant="outline-dark"
+                  variant="outline-primary"
                   size="sm"
                   onClick={handleLogout}
                 >
-                  Logout
+                  Se déconnecter
                 </Button>
               </>
             )}

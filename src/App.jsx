@@ -3,6 +3,7 @@ import Router from "./routes/Router";
 import { AuthProvider } from "./context/AuthProvider";
 import { ToastProvider } from "./context/ToastProvider";
 import AppNavbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
 
 /**
  * Root application component
@@ -14,6 +15,7 @@ export default function App() {
         <ToastProvider>
           <AppNavbar />
           <Router />
+          <Footer />
         </ToastProvider>
       </AuthProvider>
     </BrowserRouter>

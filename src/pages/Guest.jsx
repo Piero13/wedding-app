@@ -2,6 +2,7 @@ import { Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function Guest() {
+
   return (
     <Container className="py-5 text-center">
 
@@ -15,11 +16,11 @@ export default function Guest() {
 
       <div className="d-flex justify-content-center gap-3">
 
-        <Button as={Link} to="/guest/gallery">
+        <Button className="w-10" as={Link} to="/guest/gallery">
           Galerie
         </Button>
 
-        <Button as={Link} to="/guest/guestbook" variant="outline-danger">
+        <Button className="w-10" as={Link} to="/guest/guestbook" variant="outline-danger">
           Livre d’or
         </Button>
 
