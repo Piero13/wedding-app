@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../services/supabase/supabaseClient";
 import { validateAccessCode } from "../services/auth/accessService";
-import { Form, Button, Container, Alert } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-import { useToast } from "../hooks/useToast"
+import { useToast } from "../hooks/useToast";
+import { useAuth } from "../hooks/useAuth";
 
 /**
  * Login page for admin and guests
@@ -13,17 +14,22 @@ export default function Login() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const { showToast } = useToast();
+  const { loginGuest } = useAuth();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
-    code: ""
+    code: "",
   });
-  const { showToast } = useToast();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  /**
+   * Admin login
+   */
   const handleAdminLogin = async () => {
     const { error } = await supabase.auth.signInWithPassword({
       email: form.email,
@@ -31,22 +37,27 @@ export default function Login() {
     });
 
     if (error) {
-        showToast("Email ou mot de passe invalide", "danger")
-        return
-    };
+      showToast("Email ou mot de passe invalide", "danger");
+      return;
+    }
 
-    navigate("/admin")
+    navigate("/admin");
   };
 
+  /**
+   * Guest login (FIXED)
+   */
   const handleGuestLogin = async () => {
     const data = await validateAccessCode(form.code);
 
     if (!data) {
-      showToast("Code d'accès invalide", "danger")
+      showToast("Code d'accès invalide", "danger");
       return;
     }
 
-    localStorage.setItem("guest_access", form.code);
+    // ✅ stocker l'objet household complet
+    loginGuest(data);
+
     navigate("/guest");
   };
 
@@ -55,89 +66,61 @@ export default function Login() {
       <h2 className="text-center mb-4">Connexion</h2>
 
       <div className="text-center mb-5">
-        <Button 
-          variant={isAdmin ? "secondary" : "primary"}
+        <Button
+          variant={!isAdmin ? "primary" : "secondary"}
           onClick={() => setIsAdmin(false)}
-          className="w-10 me-4 border-primaryDark bs-dark"
+          className="me-3"
         >
           Invité
-        </Button>{" "}
-        
+        </Button>
+
         <Button
           variant={isAdmin ? "primary" : "secondary"}
           onClick={() => setIsAdmin(true)}
-          className="w-10 border-primaryDark bs-dark"
         >
           Admin
         </Button>
       </div>
 
       {isAdmin ? (
-        <div className="w-lg-50 mx-auto border border-2 border-primary p-4 rounded d-flex flex-column align-items-center">
-          <Form.Group className="mb-3 w-100">
+        <div className="mx-auto border p-4 rounded" style={{ maxWidth: 400 }}>
+          <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
-
-            <Form.Control
-              name="email"
-              placeholder="Email"
-              onChange={handleChange}
-              required
-            />
+            <Form.Control name="email" onChange={handleChange} />
           </Form.Group>
 
-          <Form.Group className="mb-3 w-100">
+          <Form.Group className="mb-3">
             <Form.Label>Mot de passe</Form.Label>
 
             <div className="position-relative">
-                <Form.Control
-                    type={showPassword ? 'text' : 'password'}
-                    name="password"
-                    placeholder="Mot de passe"
-                    onChange={handleChange}
-                    required
-                />
-                <span
-                    onClick={() => setShowPassword(!showPassword)}
-                    style={{
-                        transform: 'translateY(-50%)',
-                        cursor: 'pointer',
-                        right: '10px',
-                        opacity: 0.7,
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.opacity = 1}
-                    onMouseLeave={(e) => e.currentTarget.style.opacity = 0.7}
-                    className='d-flex justify-content-center align-items-center position-absolute top-50'
-                >
-                    {showPassword ? <FaEye /> : <FaEyeSlash />}
-                </span>
+              <Form.Control
+                type={showPassword ? "text" : "password"}
+                name="password"
+                onChange={handleChange}
+              />
+
+              <span
+                onClick={() => setShowPassword(!showPassword)}
+                className="position-absolute top-50 end-0 translate-middle-y me-2"
+                style={{ cursor: "pointer" }}
+              >
+                {showPassword ? <FaEye /> : <FaEyeSlash />}
+              </span>
             </div>
           </Form.Group>
 
-          <Button 
-            variant="primary"
-            className="w-10 border-primaryDark bs-dark"
-            onClick={handleAdminLogin}
-          >
+          <Button className="w-100" onClick={handleAdminLogin}>
             Connexion
           </Button>
         </div>
       ) : (
-        <div className="w-md-60 w-lg-50 mx-auto border border-2 border-primary p-4 rounded d-flex flex-column align-items-center">
-          <Form.Group className="mb-3 w-100">
+        <div className="mx-auto border p-4 rounded" style={{ maxWidth: 400 }}>
+          <Form.Group className="mb-3">
             <Form.Label>Code d'accès</Form.Label>
-
-            <Form.Control
-              name="code"
-              placeholder="Code d'accès"
-              onChange={handleChange}
-            />
+            <Form.Control name="code" onChange={handleChange} />
           </Form.Group>
 
-          <Button
-            variant="primary"
-            onClick={handleGuestLogin}
-            className="w-10 border-primaryDark bs-dark"
-          >
+          <Button className="w-100" onClick={handleGuestLogin}>
             Entrer
           </Button>
         </div>

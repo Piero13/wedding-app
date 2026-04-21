@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -12,7 +12,6 @@ import ProtectedGuestRoute from "./ProtectedGuestRoute";
 
 export default function Router() {
   return (
-    <BrowserRouter>
       <Routes>
 
         {/* Public */}
@@ -59,6 +58,5 @@ export default function Router() {
         />
 
       </Routes>
-    </BrowserRouter>
   );
 }

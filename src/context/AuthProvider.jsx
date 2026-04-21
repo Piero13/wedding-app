@@ -2,26 +2,98 @@ import { useEffect, useState } from "react";
 import { supabase } from "../services/supabase/supabaseClient";
 import { AuthContext } from "./AuthContext";
 
-
+/**
+ * Auth provider
+ */
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [guest, setGuest] = useState(null);
+
+  /**
+   * Check admin
+   */
+  const checkAdmin = async (userId) => {
+    const { data } = await supabase
+      .from("admins")
+      .select("id")
+      .eq("id", userId)
+      .maybeSingle();
+
+    setIsAdmin(!!data);
+  };
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      setUser(data.user);
-    });
+    /**
+     * Init session
+     */
+    const init = async () => {
+      const { data } = await supabase.auth.getUser();
+      const currentUser = data.user;
 
+      setUser(currentUser);
+
+      if (currentUser) {
+        await checkAdmin(currentUser.id);
+      }
+
+      // 🔥 récupérer guest depuis localStorage
+      const storedGuest = localStorage.getItem("guest");
+      if (storedGuest) {
+        setGuest(JSON.parse(storedGuest));
+      }
+    };
+
+    init();
+
+    /**
+     * Listen auth changes
+     */
     const { data: listener } = supabase.auth.onAuthStateChange(
-      (_, session) => {
-        setUser(session?.user || null);
+      async (_, session) => {
+        const currentUser = session?.user ?? null;
+        setUser(currentUser);
+
+        if (currentUser) {
+          await checkAdmin(currentUser.id);
+        } else {
+          setIsAdmin(false);
+        }
       }
     );
 
     return () => listener.subscription.unsubscribe();
   }, []);
 
+  const loginGuest = (guestData) => {
+    localStorage.setItem("guest", JSON.stringify(guestData));
+    setGuest(guestData);
+  };
+
+  /**
+ * Logout user (admin or guest)
+ */
+  const logout = async () => {
+    await supabase.auth.signOut();
+
+    localStorage.removeItem("guest");
+
+    setUser(null);
+    setIsAdmin(false);
+    setGuest(null);
+  };
+
   return (
-    <AuthContext.Provider value={{ user }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        isAdmin,
+        guest,
+        isGuest: !!guest,
+        loginGuest,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
