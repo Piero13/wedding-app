@@ -11,7 +11,7 @@ $utilities: map-merge(
                 secondary: linear-gradient(to top left, $secondary, $secondary-dark),
                 tertiary: linear-gradient(to top left, $tertiary, $tertiary-dark),
                 primarylight: linear-gradient(to top left, $primary-light, $primary),
-                secondaryLight: linear-gradient(to top left, $secondary-light, $secondary),
+                secondaryLight: linear-gradient(to top left, $light, $secondary-light),
                 tertiaryLight: linear-gradient(to top left, $tertiary-light, $tertiary),
                 primaryFull: linear-gradient(to top left, $primary-light, $primary, $primary-dark),
                 secondaryFull: linear-gradient(to top left, $secondary-light, $secondary, $secondary-dark),

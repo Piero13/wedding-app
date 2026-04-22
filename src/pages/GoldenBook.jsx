@@ -5,7 +5,7 @@ export default function GoldenBook() {
   return (
     <div className="container py-4">
 
-      <h2 className="mb-4 text-center">
+      <h2 className="mb-4 text-center hero-title text-primary">
         Livre d’or
       </h2>
 

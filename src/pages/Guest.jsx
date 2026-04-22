@@ -6,7 +6,7 @@ export default function Guest() {
   return (
     <Container className="py-5 text-center">
 
-      <h2 className="mb-4">
+      <h2 className="mb-4 hero-title text-primary">
         Bienvenue ❤️
       </h2>
 

@@ -73,3 +73,25 @@ ul {
 .nav-link {
   @include customLink;
 }
+
+/* Pagination dots */
+.swiper-pagination-bullet {
+  width: 10px !important;
+  height: 10px !important;
+  background: #ffb7bd !important; // secondary-dark
+  opacity: 1;
+  border: 1px solid $primary-dark !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #c9142c !important; // primary
+}
+
+/* Gallery pic*/
+.galleryPic {
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

@@ -4,36 +4,38 @@ import { supabase } from "../supabase/supabaseClient";
  * Save photo metadata
  */
 export const savePhoto = async (photo) => {
-    const { data, error } = await supabase
-        .from("photos")
-        .insert([photo]);
+  const { data, error } = await supabase
+    .from("photos")
+    .insert([photo]);
 
-    if (error) throw error;
+  if (error) throw error;
 
-    return data;
+  return data;
 };
 
 /**
  * Fetch photos
  */
 export const fetchPhotos = async () => {
-    const { data, error } = await supabase
-        .from("photos")
-        .select("*")
-        .order("created_at", { ascending: false });
+  const { data, error } = await supabase
+    .from("photos")
+    .select("*")
+    .order("created_at", { ascending: false });
 
-    if (error) throw error;
+  if (error) throw error;
 
-    return data;
+  return data;
 };
 
 /**
- * Fetch all guestbook messages (admin)
+ * Fetch guestbook messages (admin)
+ * Non-approved first
  */
 export const fetchGuestbookMessages = async () => {
   const { data, error } = await supabase
     .from("guestbook_messages")
     .select("*")
+    .order("is_approved", { ascending: true }) // 🔥 important
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -51,6 +53,21 @@ export const approveMessage = async (id) => {
   const { error } = await supabase
     .from("guestbook_messages")
     .update({ is_approved: true })
+    .eq("id", id);
+
+  if (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+/**
+ * Delete guestbook message
+ */
+export const deleteMessage = async (id) => {
+  const { error } = await supabase
+    .from("guestbook_messages")
+    .delete()
     .eq("id", id);
 
   if (error) {

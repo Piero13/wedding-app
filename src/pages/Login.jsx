@@ -63,7 +63,7 @@ export default function Login() {
 
   return (
     <Container className="py-5">
-      <h2 className="text-center mb-4">Connexion</h2>
+      <h2 className="text-center mb-4 hero-title text-primary">Connexion</h2>
 
       <div className="text-center mb-5">
         <Button

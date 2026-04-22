@@ -30,13 +30,21 @@ export default function Router() {
           }
         />
 
-
         <Route
           path="/guest/gallery"
           element={
             <ProtectedGuestRoute>
               <Gallery />
             </ProtectedGuestRoute>
+          }
+        />
+
+        <Route
+          path="/admin/gallery"
+          element={
+            <ProtectedAdminRoute>
+              <Gallery />
+            </ProtectedAdminRoute>
           }
         />
 

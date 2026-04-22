@@ -32,8 +32,8 @@ export default function Admin() {
     }, []);;
     
     return (
-        <Container className="py-5">
-            <h2 className="mb-4 text-center">Admin Dashboard</h2>
+        <Container className="pt-5 pb-10">
+            <h2 className="mb-4 text-center text-primary hero-title">Admin Dashboard</h2>
 
             <CategoryManager />
 

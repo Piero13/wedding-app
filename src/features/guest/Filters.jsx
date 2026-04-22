@@ -20,7 +20,7 @@ export default function Filters({ onSearch, onCategory }) {
 
 
   return (
-    <>
+    <div className="mb-4">
       <Form.Control
         placeholder="Rechercher..."
         className="mb-2"
@@ -35,6 +35,6 @@ export default function Filters({ onSearch, onCategory }) {
           </option>
         ))}
       </Form.Select>
-    </>
+    </div>
   );
 }
