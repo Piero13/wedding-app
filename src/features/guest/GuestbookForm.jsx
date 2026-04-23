@@ -35,48 +35,60 @@ export default function GuestbookForm() {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="mb-4">
+    <Form onSubmit={handleSubmit} className="mb-4 w-100 w-md-75 me-md-4">
 
-      <Form.Control
-        className="mb-2"
-        placeholder="Prénom"
-        value={form.first_name}
-        onChange={(e) =>
-          setForm({ ...form, first_name: e.target.value })
-        }
-        required
-      />
+      <Form.Group className="mb-3">
+        <Form.Label className="mb-1">Prénom</Form.Label>
 
-      <Form.Control
-        className="mb-2"
-        placeholder="Nom"
-        value={form.last_name}
-        onChange={(e) =>
-          setForm({ ...form, last_name: e.target.value })
-        }
-      />
+        <Form.Control
+          placeholder="Prénom"
+          value={form.first_name}
+          onChange={(e) =>
+            setForm({ ...form, first_name: e.target.value })
+          }
+          required
+        />
+      </Form.Group>
 
-      <Form.Control
-        className="mb-2"
-        placeholder="Email"
-        type="email"
-        value={form.email}
-        onChange={(e) =>
-          setForm({ ...form, email: e.target.value })
-        }
-      />
+      <Form.Group className="mb-3">
+        <Form.Label className="mb-1">Nom</Form.Label>
 
-      <Form.Control
-        className="mb-2"
-        placeholder="Votre message"
-        as="textarea"
-        rows={3}
-        value={form.message}
-        onChange={(e) =>
-          setForm({ ...form, message: e.target.value })
-        }
-        required
-      />
+        <Form.Control
+          placeholder="Nom"
+          value={form.last_name}
+          onChange={(e) =>
+            setForm({ ...form, last_name: e.target.value })
+          }
+        />        
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label className="mb-1">Email</Form.Label>
+
+        <Form.Control
+          placeholder="Email"
+          type="email"
+          value={form.email}
+          onChange={(e) =>
+            setForm({ ...form, email: e.target.value })
+          }
+        />        
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label className="mb-1">Message</Form.Label>
+
+        <Form.Control
+          placeholder="Votre message"
+          as="textarea"
+          rows={3}
+          value={form.message}
+          onChange={(e) =>
+            setForm({ ...form, message: e.target.value })
+          }
+          required
+        />        
+      </Form.Group>
 
       <Button type="submit" disabled={!form.message}>
         Envoyer

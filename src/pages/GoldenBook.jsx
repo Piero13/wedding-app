@@ -9,10 +9,11 @@ export default function GoldenBook() {
         Livre d’or
       </h2>
 
-      <GuestbookForm />
+      <section className="d-flex flex-column flex-md-row w-100 justify-content-center">
+        <GuestbookForm/>
 
-      <GuestbookList />
-
+        <GuestbookList />
+      </section>
     </div>
   );
 }

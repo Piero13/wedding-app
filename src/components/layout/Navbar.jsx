@@ -27,7 +27,7 @@ export default function AppNavbar() {
     >
       <Container>
         <Navbar.Brand as={Link} to="/">
-          ❤️ Mariage
+          <h1 className="fw-bold hero-title fs-4">Mariage Alexa & Pierre</h1>
         </Navbar.Brand>
 
         <Navbar.Toggle />
@@ -54,7 +54,13 @@ export default function AppNavbar() {
 
             {/* Non connecté */}
             {!user && !guest && (
-              <Nav.Link className="nav-link" as={Link} to="/login" onClick={() => setExpanded(false)}>
+              <Nav.Link 
+                className="nav-link" 
+                as={Link} 
+                to="/login" 
+                onClick={() => setExpanded(false)}
+                aria-label="Se connecter"
+              >
                 Connexion
               </Nav.Link>
             )}
@@ -79,6 +85,7 @@ export default function AppNavbar() {
                   variant="outline-primary"
                   size="sm"
                   onClick={handleLogout}
+                  aria-label="Se déconnecter"
                 >
                   Se déconnecter
                 </Button>
@@ -96,6 +103,7 @@ export default function AppNavbar() {
                   variant="outline-primary"
                   size="sm"
                   onClick={handleLogout}
+                  aria-label="Se déconnecter"
                 >
                   Se déconnecter
                 </Button>

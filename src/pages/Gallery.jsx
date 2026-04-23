@@ -69,7 +69,12 @@ export default function Gallery() {
   };
 
   if (loading) {
-    return <Spinner className="d-block mx-auto mt-5" />;
+    return  <Spinner 
+              className="d-block mx-auto mt-5"
+              variant="primary"
+            >
+              <span className="visually-hidden">Chargement...</span>
+            </Spinner>;
   }
 
   return (

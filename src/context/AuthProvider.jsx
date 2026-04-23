@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [guest, setGuest] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   /**
    * Check admin
@@ -28,8 +29,8 @@ export const AuthProvider = ({ children }) => {
      * Init session
      */
     const init = async () => {
-      const { data } = await supabase.auth.getUser();
-      const currentUser = data.user;
+      const { data } = await supabase.auth.getSession();
+      const currentUser = data.session?.user ?? null;
 
       setUser(currentUser);
 
@@ -42,6 +43,7 @@ export const AuthProvider = ({ children }) => {
       if (storedGuest) {
         setGuest(JSON.parse(storedGuest));
       }
+      setLoading(false)
     };
 
     init();
@@ -52,6 +54,7 @@ export const AuthProvider = ({ children }) => {
     const { data: listener } = supabase.auth.onAuthStateChange(
       async (_, session) => {
         const currentUser = session?.user ?? null;
+
         setUser(currentUser);
 
         if (currentUser) {
@@ -77,6 +80,7 @@ export const AuthProvider = ({ children }) => {
     await supabase.auth.signOut();
 
     localStorage.removeItem("guest");
+    localStorage.removeItem("guest_access");
 
     setUser(null);
     setIsAdmin(false);
@@ -92,9 +96,10 @@ export const AuthProvider = ({ children }) => {
         isGuest: !!guest,
         loginGuest,
         logout,
+        loading,
       }}
     >
-      {children}
+      {!loading && children}
     </AuthContext.Provider>
   );
 };

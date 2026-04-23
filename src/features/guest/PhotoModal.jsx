@@ -22,7 +22,13 @@ export default function PhotoModal({
   if (!photos || initialIndex === null) return null;
 
   return (
-    <Modal show={initialIndex !== null} onHide={onHide} centered size="lg">
+    <Modal 
+      show={initialIndex !== null} 
+      onHide={onHide} 
+      centered 
+      size="lg"
+      aria-labellyby="photo-modal-title"
+    >
       <Modal.Body className="p-0 bg-light position-relative rounded bs-dark">
 
         {/* CLOSE */}
@@ -60,11 +66,12 @@ export default function PhotoModal({
                 <img
                   src={photo.image_url}
                   alt={photo.title}
+                  loading="lazy"
                   className="img-fluid w-100"
                 />
 
                 <div className="p-3">
-                  <h5>{photo.title}</h5>
+                  <h5 id="photo-modal-title">{photo.title}</h5>
                   <p className="text-muted small">
                     {photo.description}
                   </p>
