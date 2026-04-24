@@ -1,7 +1,8 @@
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { FaDownload } from "react-icons/fa6";
 
 /**
  * Main navigation bar
@@ -10,12 +11,24 @@ export default function AppNavbar() {
   const { user, isAdmin, guest, logout } = useAuth();
   const navigate = useNavigate();
   const [expanded, setExpanded] = useState(false);
+  const [installPrompt, setInstallPrompt] = useState(null);
 
   const handleLogout = async () => {
     await logout();
     setExpanded(false);
     navigate("/");
   };
+
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+    };
+
+    window.addEventListener("beforeinstallprompt", handler);
+
+    return () => window.removeEventListener("beforeinstallprompt", handler);
+  }, []);
 
   return (
     <Navbar 
@@ -111,6 +124,25 @@ export default function AppNavbar() {
             )}
 
           </Nav>
+
+          {installPrompt && (
+            <div className="d-flex flex-column align-items-center ms-lg-3 mt-3 mt-lg-0">
+              <Button
+                variant="secondary"
+                className="border-primaryDark bs-dark mb-2 w-content"
+                size="sm"
+                onClick={async () => {
+                  installPrompt.prompt();
+                  await installPrompt.userChoice;
+                  setInstallPrompt(null);
+                }}
+              >
+                <FaDownload className="text-primary"/>
+              </Button>
+              <p className="m-0 fs-7">Installer l'app</p>
+            </div>
+          )}
+
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -4,7 +4,7 @@
   "description": "Mariage Alexa & Pierre",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fff5f5",
+  "background_color": "#fff",
   "theme_color": "#c9142c",
   "icons": [
     {
