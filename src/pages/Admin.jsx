@@ -1,59 +1,12 @@
-import { useEffect, useState } from "react";
-import { fetchPhotos as fetchPhotosService } from "../services/admin/adminService";
-import { Container, Row, Col } from "react-bootstrap";
-import UploadForm from "../features/admin/UploadForm";
-import PhotoList from "../features/admin/PhotoList";
-import GuestbookModeration from "../features/admin/GuestbookModeration";
-import CategoryManager from "../features/admin/CategoryManager"
+import AdminLayout from "../layouts/AdminLayout";
+import Dashboard from "../features/admin/Dashboard";
+import Visits from "../features/admin/Visits";
 
 export default function Admin() {
-    const [photos, setPhotos] = useState([]);
-
-    const loadPhotos = async () => {
-        try {
-            const data = await fetchPhotosService();
-            setPhotos(data);
-        } catch (err) {
-            console.error("Error fetching photos:", err);
-        }
-    };
-
-    useEffect(() => {
-        const loadPhotos = async () => {
-            try {
-                const data = await fetchPhotosService();
-                setPhotos(data);
-            } catch (err) {
-                console.error("Error fetching photos:", err);
-            }
-        };
-
-        loadPhotos();
-    }, []);;
-    
-    return (
-        <Container className="pt-5 pb-10">
-            <h2 className="mb-4 text-center text-primary hero-title">Admin Dashboard</h2>
-
-            {/* admin kpi */}
-
-            {/* categorymanager */}
-            <CategoryManager />
-
-            {/* photo manager */}
-            <section>
-                <Row>
-                    <Col sm={12} lg={5}>
-                        <UploadForm onUploadSuccess={loadPhotos}/>
-                    </Col>
-                    <Col sm={12} lg={7}>
-                        <PhotoList photos={photos} refresh={loadPhotos}/>                
-                    </Col>
-                </Row>
-            </section>
-
-            {/* goldenbook manager */}
-            <GuestbookModeration />
-        </Container>
-    );
+  return (
+    <AdminLayout>
+      <Dashboard />
+      <Visits />
+    </AdminLayout>
+  );
 }

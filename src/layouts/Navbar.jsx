@@ -1,6 +1,6 @@
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 import { useState, useEffect } from "react";
 import { FaDownload } from "react-icons/fa6";
 
@@ -47,7 +47,7 @@ export default function AppNavbar() {
         <Navbar.Collapse>
           <Nav className="ms-auto align-items-center gap-2">
 
-            <Nav.Link className="nav-link" as={Link} to="/" onClick={() => setExpanded(false)}>
+            <Nav.Link className="custom-nav-link" as={Link} to="/" onClick={() => setExpanded(false)}>
               Home
             </Nav.Link>
 
@@ -56,11 +56,11 @@ export default function AppNavbar() {
             </Nav.Link> */}
 
             {guest ? (
-              <Nav.Link className="nav-link" as={Link} to="/guest/guestbook" onClick={() => setExpanded(false)}>
+              <Nav.Link className="custom-nav-link" as={Link} to="/guest/guestbook" onClick={() => setExpanded(false)}>
                 Livre d'or
               </Nav.Link>
             ) : (
-              <Nav.Link className="nav-link" as={Link} to="/guestbook/public" onClick={() => setExpanded(false)}>
+              <Nav.Link className="custom-nav-link" as={Link} to="/guestbook/public" onClick={() => setExpanded(false)}>
                 Livre d'or
               </Nav.Link>
             )}
@@ -68,7 +68,7 @@ export default function AppNavbar() {
             {/* Non connecté */}
             {!user && !guest && (
               <Nav.Link 
-                className="nav-link" 
+                className="custom-nav-link" 
                 as={Link} 
                 to="/login" 
                 onClick={() => setExpanded(false)}
@@ -81,7 +81,7 @@ export default function AppNavbar() {
             {/* Guest or Admin gallery */}
             {(guest || isAdmin) && (
               <>
-                <Nav.Link className="nav-link" as={Link} to={guest ? "/guest/gallery" : "/admin/gallery"} onClick={() => setExpanded(false)}>
+                <Nav.Link className="custom-nav-link" as={Link} to={guest ? "/guest/gallery" : "/admin/gallery"} onClick={() => setExpanded(false)}>
                     Photos
                 </Nav.Link>
               </>
@@ -90,7 +90,7 @@ export default function AppNavbar() {
             {/* Guest */}
             {guest && (
               <>
-                <Nav.Link className="nav-link" as={Link} to="/guest" onClick={() => setExpanded(false)}>
+                <Nav.Link className="custom-nav-link" as={Link} to="/guest" onClick={() => setExpanded(false)}>
                   Mon espace
                 </Nav.Link>
 
@@ -108,7 +108,7 @@ export default function AppNavbar() {
             {/* Admin */}
             {isAdmin && (
               <>
-                <Nav.Link className="nav-link" as={Link} to="/admin">
+                <Nav.Link className="custom-nav-link" as={Link} to="/admin">
                   Admin
                 </Nav.Link>
 

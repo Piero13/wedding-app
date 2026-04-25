@@ -2,8 +2,8 @@ import { BrowserRouter } from "react-router-dom";
 import Router from "./routes/Router";
 import { AuthProvider } from "./context/AuthProvider";
 import { ToastProvider } from "./context/ToastProvider";
-import AppNavbar from "./components/layout/Navbar";
-import Footer from "./components/layout/Footer";
+import AppNavbar from "./layouts/Navbar";
+import Footer from "./layouts/Footer";
 
 /**
  * Root application component

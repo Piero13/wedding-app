@@ -172,7 +172,8 @@ export const getPhotosCount = async () => {
 export const getPendingPhotosCount = async () => {
   const { count, error } = await supabase
     .from("photos")
-    .select("*", { count: "exact", head: true });
+    .select("*", { count: "exact", head: true })
+    .eq("is_approved", false);
 
   if (error) throw error;
 

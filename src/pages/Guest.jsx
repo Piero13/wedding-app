@@ -1,6 +1,6 @@
 import { Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import GuestUploadForm from "../features/guest/GuestUploadForm";
+import GuestUploadForm from "../features/goldenbook/GuestUploadForm";
 
 export default function Guest() {
 

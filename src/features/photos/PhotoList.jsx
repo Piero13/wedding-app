@@ -2,7 +2,7 @@ import { useState } from "react";
 import { supabase } from "../../services/supabase/supabaseClient";
 import { useToast } from "../../hooks/useToast";
 import { Button, Image, Card, Badge } from "react-bootstrap";
-import EditPhotoModal from "./EditPhotoModal";
+import EditPhotoModal from "../admin/EditPhotoModal";
 import { approvePhoto } from "../../services/admin/adminService";
 
 export default function PhotoList({ photos, refresh }) {

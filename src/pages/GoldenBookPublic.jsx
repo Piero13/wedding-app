@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import GuestbookList from "../features/guest/GuestbookList";
+import GuestbookList from "../features/goldenbook/GuestbookList";
 
 export default function GoldenBookPublic() {
   return (
