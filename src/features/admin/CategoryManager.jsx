@@ -41,7 +41,7 @@ export default function CategoryManager({ onUpdate }) {
   return (
     <section>
       <Container className="p-0 mb-1">
-        <h3 className="fs-4">Categories</h3>
+        <h3 className="fs-4 mb-3">Categories</h3>
 
         <Row>
           <Col sm={12} lg={5}>

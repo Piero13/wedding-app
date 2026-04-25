@@ -35,8 +35,12 @@ export default function Admin() {
         <Container className="pt-5 pb-10">
             <h2 className="mb-4 text-center text-primary hero-title">Admin Dashboard</h2>
 
+            {/* admin kpi */}
+
+            {/* categorymanager */}
             <CategoryManager />
 
+            {/* photo manager */}
             <section>
                 <Row>
                     <Col sm={12} lg={5}>
@@ -48,7 +52,7 @@ export default function Admin() {
                 </Row>
             </section>
 
-            
+            {/* goldenbook manager */}
             <GuestbookModeration />
         </Container>
     );

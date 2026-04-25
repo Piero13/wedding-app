@@ -98,7 +98,7 @@ export default function GuestbookModeration() {
 
   return (
     <div className="mt-5">
-      <h3 className="mb-4">Modération Livre d’or</h3>
+      <h3 className="fs-4 mb-3">Modération Livre d’or</h3>
 
       {messages.length === 0 && (
         <p className="text-center">Aucun message</p>

@@ -20,6 +20,7 @@ export const fetchPhotos = async () => {
   const { data, error } = await supabase
     .from("photos")
     .select("*")
+    .order("is_approved", { ascending: true })
     .order("created_at", { ascending: false });
 
   if (error) throw error;
@@ -111,4 +112,69 @@ export const updatePhoto = async (id, updates) => {
     .eq("id", id);
 
   if (error) throw error;
+};
+
+export const approvePhoto = async (id) => {
+  const { error } = await supabase
+    .from("photos")
+    .update({ is_approved: true })
+    .eq("id", id);
+
+  if (error) throw error;
+};
+
+export const deletePhoto = async (id) => {
+  const { error } = await supabase
+    .from("photos")
+    .delete()
+    .eq("id", id);
+
+  if (error) throw error;
+};
+
+/**
+ * Count guestbook messages
+ */
+export const getMessagesCount = async () => {
+  const { count, error } = await supabase
+    .from("guestbook_messages")
+    .select("*", { count: "exact", head: true});
+  
+  if (error) throw error;
+
+  return count || 0;
+};
+
+export const getPendingMessagesCount = async () => {
+  const { count, error } = await supabase
+    .from("guestbook_messages")
+    .select("*", { count: "exact", head: true })
+    .eq("is_approved", false);
+
+  if (error) throw error;
+
+  return count || 0;
+};
+
+/**
+ * Count photos
+ */
+export const getPhotosCount = async () => {
+  const { count, error } = await supabase
+    .from("photos")
+    .select("*", { count: "exact", head: true });
+
+  if (error) throw error;
+
+  return count || 0;
+};
+
+export const getPendingPhotosCount = async () => {
+  const { count, error } = await supabase
+    .from("photos")
+    .select("*", { count: "exact", head: true });
+
+  if (error) throw error;
+
+  return count || 0;
 };

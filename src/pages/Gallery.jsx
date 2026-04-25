@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { fetchPhotos } from "../services/guest/galleryService";
 
-import GalleryGrid from "../features/guest/GalleryGrid";
-import PhotoModal from "../features/guest/PhotoModal";
-import Filters from "../features/guest/Filters";
+import GalleryGrid from "../features/photos/GalleryGrid";
+import PhotoModal from "../features/photos/PhotoModal";
+import Filters from "../features/photos/Filters";
 import { Pagination, Spinner } from "react-bootstrap";
 
 export default function Gallery() {

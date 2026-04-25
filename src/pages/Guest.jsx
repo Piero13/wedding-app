@@ -1,5 +1,6 @@
 import { Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import GuestUploadForm from "../features/guest/GuestUploadForm";
 
 export default function Guest() {
 
@@ -25,6 +26,8 @@ export default function Guest() {
         </Button>
 
       </div>
+
+      <GuestUploadForm />
 
     </Container>
   );
