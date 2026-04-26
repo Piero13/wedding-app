@@ -69,7 +69,7 @@ export default function Login() {
         <Button
           variant={!isAdmin ? "primary" : "secondary"}
           onClick={() => setIsAdmin(false)}
-          className="w-9 me-3 border-primaryDark rounded-5"
+          className="w-9 me-3 border-primaryDark rounded-5 bs-dark"
         >
           Invité
         </Button>
@@ -77,7 +77,7 @@ export default function Login() {
         <Button
           variant={isAdmin ? "primary" : "secondary"}
           onClick={() => setIsAdmin(true)}
-          className="w-9 border-primaryDark rounded-5"
+          className="w-9 border-primaryDark rounded-5 bs-dark"
         >
           Admin
         </Button>

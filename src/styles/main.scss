@@ -22,6 +22,11 @@
 
 }
 
+.app {
+  min-height: calc(100dvh - 50px);
+  background-color: $light;
+}
+
 * {
   margin: 0;
   padding: 0;

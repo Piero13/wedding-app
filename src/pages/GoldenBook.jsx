@@ -1,10 +1,9 @@
 import GuestbookForm from "../features/goldenbook/GuestbookForm";
 import GuestbookList from "../features/goldenbook/GuestbookList";
-import AdminLayout from "../layouts/AdminLayout";
+
 
 export default function GoldenBook() {
   return (
-    <AdminLayout>
       <div className="container py-4">
 
         <h2 className="mb-4 text-center hero-title text-primary">
@@ -17,6 +16,5 @@ export default function GoldenBook() {
           <GuestbookList />
         </section>
       </div>
-    </AdminLayout>
   );
 }

@@ -27,7 +27,7 @@ export default function Countdown() {
 
   return (
     <Container className="text-center py-5">
-      <h3 className="text-primary mb-4">⏳ Avant le grand jour</h3>
+      <h3 className="script fs-1 text-primary mb-4">Avant le grand jour</h3>
 
       <div className="d-flex justify-content-center gap-4 countdown">
         {Object.entries(timeLeft).map(([key, value]) => (

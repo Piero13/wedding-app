@@ -40,7 +40,7 @@ export default function AppNavbar() {
     >
       <Container>
         <Navbar.Brand as={Link} to="/">
-          <h1 className="fw-bold hero-title fs-4">Mariage Alexa & Pierre</h1>
+          <h1 className="fw-bold hero-title fs-4 mb-0">Mariage Alexa & Pierre</h1>
         </Navbar.Brand>
 
         <Navbar.Toggle />

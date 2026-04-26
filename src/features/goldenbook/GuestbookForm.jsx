@@ -35,7 +35,7 @@ export default function GuestbookForm() {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="mb-4 w-100 w-md-75 me-md-4">
+    <Form onSubmit={handleSubmit} className="mb-4 w-100 w-md-75 me-md-4 d-flex flex-column">
 
       <Form.Group className="mb-3">
         <Form.Label className="mb-1">Prénom</Form.Label>
@@ -90,7 +90,7 @@ export default function GuestbookForm() {
         />        
       </Form.Group>
 
-      <Button type="submit" disabled={!form.message}>
+      <Button type="submit" disabled={!form.message} variant="primary" className="border-primaryDark bs-dark w-10 mx-auto mx-md-0 rounded-5">
         Envoyer
       </Button>
     </Form>

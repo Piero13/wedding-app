@@ -14,7 +14,9 @@ export default function App() {
       <AuthProvider>
         <ToastProvider>
           <AppNavbar />
-          <Router />
+          <div className="app">
+            <Router />
+          </div>
           <Footer />
         </ToastProvider>
       </AuthProvider>

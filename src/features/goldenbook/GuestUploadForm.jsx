@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Form, Button, Spinner } from "react-bootstrap";
+import { FaCamera } from "react-icons/fa";
 import { uploadGuestPhoto } from "../../services/guest/guestUploadService";
 import { useAuth } from "../../hooks/useAuth";
 import { useToast } from "../../hooks/useToast";
@@ -76,11 +77,12 @@ export default function GuestUploadForm() {
 
   return (
     <Form onSubmit={handleSubmit} className="mb-4">
-      <h4>Partager vos photos 📸</h4>
+      <p className="mb-3">Partagez vos photos <FaCamera className="fs-4 ms-2 mb-2" /></p>
+      
 
       {/* INPUT */}
       <Form.Group className="mb-3">
-        <Form.Control type="file" onChange={handleFileChange} />
+        <Form.Control type="file" onChange={handleFileChange}  aria-label="upload photo" className="w-100 w-lg-50 mx-lg-auto"/>
       </Form.Group>
 
       {/* PREVIEW */}
@@ -94,7 +96,7 @@ export default function GuestUploadForm() {
       )}
 
       {/* SUBMIT */}
-      <Button type="submit" disabled={loading}>
+      <Button type="submit" disabled={loading} variant="primary" className="border-primaryDark bs-dark w-10 rounded-5">
         {loading ? <Spinner size="sm" /> : "Envoyer"}
       </Button>
 

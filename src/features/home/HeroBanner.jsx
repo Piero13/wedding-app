@@ -36,7 +36,7 @@ export default function HeroBanner({ guest }) {
         <Button
           as={Link}
           to={getRedirectPath()}
-          className="cta-button mt-3 rounded-5 px-3"
+          className="cta-button mt-3 rounded-5 px-3 bs-dark"
         >
           {getLabel()}
         </Button>
