@@ -1,6 +1,6 @@
 import { Container } from "react-bootstrap";
-import GuestbookModeration from "../features/admin/GuestbookModeration";
 import AdminLayout from "../layouts/AdminLayout";
+import GuestbookModeration from "../features/admin/GuestbookModeration";
 
 export default function GoldenBookManager() {
   return (
