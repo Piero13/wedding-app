@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Gallery from "../pages/Gallery";
-import Goldenbook from "../pages/GoldenBook";
+import Goldenbook from "../pages/Goldenbook";
 import GoldenbookPublic from "../pages/GoldenbookPublic";
 import Guest from "../pages/Guest";
 import Admin from "../pages/Admin";
@@ -11,6 +11,7 @@ import PhotosManager from "../pages/PhotosManager";
 import GoldenbookManager from "../pages/GoldenbookManager";
 import GuestsManager from "../pages/GuestsManager";
 import CouplePhotosManager from "../pages/CouplePhotosManager";
+
 
 
 
