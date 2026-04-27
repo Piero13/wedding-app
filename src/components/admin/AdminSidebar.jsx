@@ -15,7 +15,8 @@ export default function AdminSidebar({ closeMenu }) {
 
   const links = [
     { label: "Dashboard", path: "/admin", icon: <FaChartPie /> },
-    { label: "Photos", path: "/admin/photos", icon: <FaImages /> },
+    { label: "Photos mariage", path: "/admin/photos", icon: <FaImages /> },
+    { label: "Photos souvenirs", path: "/admin/couple-photos", icon: <FaImages /> },
     { label: "Livre d'or", path: "/admin/goldenbook", icon: <FaBookOpen /> },
     { label: "Invités", path: "/admin/guests", icon: <FaUsers /> },
   ];

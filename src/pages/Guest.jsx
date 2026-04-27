@@ -7,33 +7,37 @@ import GuestUploadForm from "../features/goldenbook/GuestUploadForm";
 export default function Guest() {
 
   return (
-    <Container className="py-5 px-4 text-center d-flex flex-column">
+    <Container className="py-5 px-4 text-center d-flex flex-column align-items-center">
 
       <h2 className="mb-5 hero-title text-primary">
         Bienvenue ❤️
       </h2>
 
-      <p className="mb-3">
-        Découvrez les souvenirs de cette journée unique 
-        <FaRegImages className="fs-4 ms-2 mb-2" />
-      </p>
+      <div className="w-18 p-3 pb-4 mb-4 rounded-3 border border-primary bg-white d-flex flex-column align-items-center">
+        <p className="mb-3">
+          <FaRegImages className="fs-4 me-2 text-primary" />
+          Découvrez les souvenirs de cette journée unique 
+        </p>
 
-      <Button as={Link} to="/guest/gallery" variant="primary" className="border-primaryDark w-10 bs-dark rounded-5 mb-5 mx-auto">
-        Galerie
-      </Button>
+        <Button as={Link} to="/guest/gallery" variant="primary" className="border-primaryDark w-10 bs-dark rounded-5 mx-auto">
+          Galerie
+        </Button>
+      </div>
 
-      <p className="mb-3">
-        Laissez un message dans notre livre d'or 
-        <FaBookOpen className="fs-4 ms-2 mb-2" />
-      </p>
+      <div className="w-18 p-3 pb-4 mb-4 rounded-3 border border-primary bg-white d-flex flex-column align-items-center">
+        <p className="mb-3">
+          <FaBookOpen className="fs-4 me-2 text-primary" />
+          Laissez un message dans notre livre d'or 
+        </p>
 
-      <Button as={Link} to="/guest/guestbook" variant="primary" className="w-10 border-primaryDark bs-dark rounded-5 mx-auto mb-5">
-        Livre d’or
-      </Button>
+        <Button as={Link} to="/guest/guestbook" variant="primary" className="w-10 border-primaryDark bs-dark rounded-5 mx-auto">
+          Livre d’or
+        </Button>
+      </div>
 
-
-
-      <GuestUploadForm />
+      <div className="w-18 p-3 pb-4 mb-4 rounded-3 border border-primary bg-white d-flex flex-column align-items-center">
+        <GuestUploadForm />
+      </div>
 
     </Container>
   );

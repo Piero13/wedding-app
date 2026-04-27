@@ -49,11 +49,11 @@ export default function CategoryManager({ onUpdate }) {
               <Form.Control
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="New category"
+                placeholder="Nouvelle catégorie"
               />
               <Button 
                 variant="primary"
-                className="border-primaryDark ms-2"
+                className="border-primaryDark ms-2 w-10"
                 onClick={handleAdd}
               >
                 Ajouter

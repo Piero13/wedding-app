@@ -84,7 +84,7 @@ export default function Login() {
       </div>
 
       {isAdmin ? (
-        <div className="mx-auto border p-4 rounded" style={{ maxWidth: 400 }}>
+        <div className="mx-auto border p-4 bg-white border-primary  rounded" style={{ maxWidth: 400 }}>
           <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
             <Form.Control name="email" onChange={handleChange} />
@@ -115,7 +115,7 @@ export default function Login() {
           </Button>
         </div>
       ) : (
-        <div className="mx-auto border p-4 rounded" style={{ maxWidth: 400 }}>
+        <div className="mx-auto border p-4 bg-white border-primary rounded" style={{ maxWidth: 400 }}>
           <Form.Group className="mb-3">
             <Form.Label>Code d'accès</Form.Label>
             <Form.Control name="code" onChange={handleChange} />

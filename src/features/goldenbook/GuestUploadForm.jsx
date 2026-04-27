@@ -76,13 +76,13 @@ export default function GuestUploadForm() {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="mb-4">
-      <p className="mb-3">Partagez vos photos <FaCamera className="fs-4 ms-2 mb-2" /></p>
+    <Form onSubmit={handleSubmit}>
+      <p className="mb-3"><FaCamera className="fs-4 me-2 text-primary" />Partagez vos photos</p>
       
 
       {/* INPUT */}
       <Form.Group className="mb-3">
-        <Form.Control type="file" onChange={handleFileChange}  aria-label="upload photo" className="w-100 w-lg-50 mx-lg-auto"/>
+        <Form.Control type="file" onChange={handleFileChange}  aria-label="upload photo" className="w-100 mx-lg-auto"/>
       </Form.Group>
 
       {/* PREVIEW */}

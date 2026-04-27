@@ -11,6 +11,7 @@ import Admin from "../pages/Admin";
 import PhotosManager from "../pages/PhotosManager";
 import GoldenBookManager from "../pages/GoldenbookManager";
 import GuestsManager from "../pages/GuestsManager";
+import CouplePhotosManager from "../pages/CouplePhotosManager";
 
 import ProtectedAdminRoute from "./ProtectedAdminRoute";
 import ProtectedGuestRoute from "./ProtectedGuestRoute";
@@ -85,6 +86,15 @@ export default function Router() {
         element={
           <ProtectedAdminRoute>
             <GuestsManager />
+          </ProtectedAdminRoute>
+        }
+      />
+
+      <Route
+        path="/admin/couple-photos"
+        element={
+          <ProtectedAdminRoute>
+            <CouplePhotosManager />
           </ProtectedAdminRoute>
         }
       />

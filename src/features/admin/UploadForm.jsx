@@ -115,10 +115,10 @@ export default function UploadForm({ onUploadSuccess }) {
     <div className="mb-4">
       <h3 className="fs-4 mb-3">Ajout de photo</h3>
 
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className="d-flex flex-column align-items-center align-items-lg-start">
 
         {/* TITLE */}
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3 w-100">
           <Form.Label>Titre</Form.Label>
           <Form.Control
             value={form.title}
@@ -129,7 +129,7 @@ export default function UploadForm({ onUploadSuccess }) {
         </Form.Group>
 
         {/* DESCRIPTION */}
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3 w-100">
           <Form.Label>Description</Form.Label>
           <Form.Control
             value={form.description}
@@ -140,7 +140,7 @@ export default function UploadForm({ onUploadSuccess }) {
         </Form.Group>
 
         {/* CATEGORY */}
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3 w-100">
           <Form.Label>Catégorie</Form.Label>
           <Form.Select
             value={form.category_id}
@@ -158,7 +158,7 @@ export default function UploadForm({ onUploadSuccess }) {
         </Form.Group>
 
         {/* FILE */}
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3 w-100">
           <Form.Label>Fichier</Form.Label>
           <Form.Control type="file" onChange={handleFileChange} />
         </Form.Group>
@@ -168,12 +168,12 @@ export default function UploadForm({ onUploadSuccess }) {
           <img
             src={URL.createObjectURL(file)}
             alt="preview"
-            className="mb-3"
+            className="mb-3 w-100"
             style={{ maxWidth: "100%", borderRadius: 8 }}
           />
         )}
 
-        <Button type="submit" disabled={loading}>
+        <Button type="submit" disabled={loading} variant="primary" className="w-10 border-primaryDark bs-dark">
           {loading ? <Spinner size="sm" /> : "Upload"}
         </Button>
       </Form>

@@ -1,42 +1,144 @@
-import { Container } from "react-bootstrap";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+import { useEffect, useState } from "react";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
+import { FaHeart } from "react-icons/fa";
 
-const images = [
-  "/couple/1.jpg",
-  "/couple/2.jpg",
-  "/couple/3.jpg",
-];
+import { fetchPublicCouplePhotos } from "../../services/admin/couplePhotosService";
+import PhotoModal from "../../features/photos/PhotoModal";
 
 export default function CoupleGallery() {
-  return (
-    <Container className="py-5">
-      <h2 className="text-center text-primary mb-4">
-        Nos souvenirs
-      </h2>
+  const [photos, setPhotos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
-      <Swiper
-        spaceBetween={10}
-        slidesPerView={1}
-        breakpoints={{
-          768: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
-        }}
-      >
-        {images.map((src, i) => (
-          <SwiperSlide key={i}>
-            <img
-                src={src}
-                alt="Souvenir couple"
-                className="img-fluid rounded shadow-sm"
-                style={{
-                    aspectRatio: "4/5",
-                    objectFit: "cover"
-                }}
+  /**
+   * Load public photos
+   */
+  useEffect(() => {
+    const loadPhotos = async () => {
+      try {
+        const data = await fetchPublicCouplePhotos();
+        setPhotos(data || []);
+      } catch (err) {
+        console.error(err);
+      }
+
+      setLoading(false);
+    };
+
+    loadPhotos();
+  }, []);
+
+  if (loading) {
+    return (
+      <Container className="py-5 text-center">
+        <Spinner />
+      </Container>
+    );
+  }
+
+  if (!photos.length) return null;
+
+  return (
+    <section className="py-6 bg-gradient-secondaryLight">
+
+      <Container>
+
+        {/* HEADER */}
+        <div className="text-center mb-5">
+
+          <div className="mb-3">
+            <FaHeart
+              className="text-primary"
+              size={28}
             />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </Container>
+          </div>
+
+          <h2 className="hero-title text-primary mb-3">
+            Nos Plus Beaux Souvenirs
+          </h2>
+
+          <p className="text-muted mx-auto"
+             style={{ maxWidth: 620 }}>
+            Quelques instants précieux de notre histoire,
+            partagés avec vous.
+          </p>
+
+        </div>
+
+        {/* GRID */}
+        <Row className="g-4">
+
+          {photos.map((photo, index) => (
+            <Col
+              xs={12}
+              sm={6}
+              lg={4}
+              key={photo.id}
+            >
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  y: 30,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: true,
+                }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.08,
+                }}
+              >
+                <div
+                  className="couple-photo-card"
+                  onClick={() =>
+                    setSelectedIndex(index)
+                  }
+                >
+                  <img
+                    src={photo.image_url}
+                    alt={photo.title}
+                    loading="lazy"
+                    className="img-fluid w-100"
+                  />
+
+                  <div className="couple-photo-overlay">
+
+                    <h5 className="mb-1">
+                      {photo.title}
+                    </h5>
+
+                    {photo.description && (
+                      <p className="small mb-0">
+                        {photo.description}
+                      </p>
+                    )}
+
+                  </div>
+
+                </div>
+              </motion.div>
+            </Col>
+          ))}
+
+        </Row>
+
+      </Container>
+
+      {/* MODAL */}
+      <PhotoModal
+        photos={photos}
+        initialIndex={selectedIndex}
+        onHide={() =>
+          setSelectedIndex(null)
+        }
+      />
+
+    </section>
   );
 }

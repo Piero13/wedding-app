@@ -49,14 +49,13 @@ export default function PhotoList({ photos, refresh }) {
     <section>
       <h3 className="fs-4 mb-3">Galerie photo</h3>
 
-      <div className="d-flex flex-wrap">
+      <div className="d-flex flex-wrap jusity-content-center">
         {photos.map((p) => (
           <Card
             key={p.id}
-            className="d-flex flex-column align-items-center justify-content-between p-2 m-2 border-primary"
-            style={{ width: "180px" }}
+            className="d-flex flex-column align-items-center justify-content-between p-2 m-2 w-12 w-lg-13 border-primary"
           >
-            <Image src={p.thumbnail_url} width={150} />
+            <Image src={p.thumbnail_url} className="w-100"/>
 
             {/* 🔥 statut */}
             <div className="mt-2">

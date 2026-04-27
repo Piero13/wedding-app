@@ -1,6 +1,9 @@
+// src/features/admin/Dashboard.jsx
 import { useEffect, useState } from "react";
 import { Row, Col, Card, Badge, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 import {
   getPhotosCount,
@@ -13,7 +16,8 @@ import {
   FaImages,
   FaClock,
   FaEnvelope,
-  FaUsers,
+  FaComments,
+  FaArrowRight,
 } from "react-icons/fa";
 
 export default function Dashboard() {
@@ -61,86 +65,122 @@ export default function Dashboard() {
 
   const cards = [
     {
-      title: "Photos",
-      text: "Gérer la galerie",
-      icon: <FaImages size={28} />,
+      title: "Galerie Photos",
+      text: "Gérer les uploads et modérer les images.",
+      icon: <FaImages className="fs-4 fs-md-3 text-light" />,
       value: stats.photos,
       path: "/admin/photos",
+      variant: "primary",
     },
     {
       title: "Photos en attente",
-      text: "Validation requise",
-      icon: <FaClock size={28} />,
+      text: "Valider les nouvelles photos invitées.",
+      icon: <FaClock className="fs-4 fs-md-3 text-light" />,
       value: stats.pendingPhotos,
       path: "/admin/photos",
-      danger: true,
+      variant: "primary",
     },
     {
-      title: "Messages",
-      text: "Livre d’or",
-      icon: <FaEnvelope size={28} />,
+      title: "Livre d’or",
+      text: "Consulter tous les messages reçus.",
+      icon: <FaEnvelope className="fs-4 fs-md-3 text-light" />,
       value: stats.messages,
       path: "/admin/goldenbook",
+      variant: "primary",
     },
     {
-      title: "Messages attente",
-      text: "Modération",
-      icon: <FaUsers size={28} />,
+      title: "Messages en attente",
+      text: "Approuver les nouveaux messages.",
+      icon: <FaComments className="fs-4 fs-md-3 text-light" />,
       value: stats.pendingMessages,
       path: "/admin/goldenbook",
-      danger: true,
+      variant: "primary",
     },
   ];
 
   if (loading) {
-    return <Spinner className="d-block mx-auto mb-5" />;
+    return (
+      <div className="text-center py-5">
+        <Spinner />
+      </div>
+    );
   }
 
   return (
     <section className="mb-5">
 
-      <h2 className="mb-4">Vue rapide</h2>
+      <div className="mb-4">
+        <h2 className="mb-1 text-dark fw-bold">
+          Vue rapide
+        </h2>
+
+        <p className="text-muted mb-0">
+          Gérez votre site mariage en un coup d'œil.
+        </p>
+      </div>
 
       <Row className="g-4">
-
         {cards.map((card, i) => (
-          <Col md={6} lg={3} key={i}>
+          <Col md={6} xl={3} key={i}>
 
-            <Card
-              className="dashboard-card h-100 border-primary"
-              onClick={() => navigate(card.path)}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.35,
+                delay: i * 0.08,
+              }}
             >
-              <Card.Body>
+              <Card
+                className="dashboard-v2-card h-100 border-primary shadow-sm"
+                onClick={() => navigate(card.path)}
+              >
+                <Card.Body className="p-4 d-flex flex-column">
 
-                <div className="d-flex justify-content-between align-items-center mb-3">
+                  {/* top */}
+                  <div className="d-flex justify-content-between align-items-start mb-4">
 
-                  <div className="text-primary">
-                    {card.icon}
+                    <div
+                      className={`d-flex align-items-center bg-primary justify-content-center w-7 h-7 w-lg-8 h-lg-8 rounded-4 ${card.variant}`}
+                    >
+                      {card.icon}
+                    </div>
+
+                    <Badge
+                      bg={
+                        card.variant === "danger"
+                          ? "danger"
+                          : "primary"
+                      }
+                      className="rounded-pill px-3 py-2 fs-6"
+                    >
+                      {card.value}
+                    </Badge>
+
                   </div>
 
-                  <Badge
-                    bg={card.danger ? "danger" : "primary"}
-                    className="fs-6 px-3 py-2"
-                  >
-                    {card.value}
-                  </Badge>
+                  {/* body */}
+                  <h5 className="fw-bold mb-2">
+                    {card.title}
+                  </h5>
 
-                </div>
+                  <p className="text-muted small flex-grow-1 mb-4">
+                    {card.text}
+                  </p>
 
-                <Card.Title>{card.title}</Card.Title>
+                  {/* footer */}
+                  <div className="dashboard-v2-link">
+                    Ouvrir
+                    <FaArrowRight className="ms-2" />
+                  </div>
 
-                <Card.Text className="text-muted">
-                  {card.text}
-                </Card.Text>
-
-              </Card.Body>
-            </Card>
+                </Card.Body>
+              </Card>
+            </motion.div>
 
           </Col>
         ))}
-
       </Row>
-
     </section>
   );
 }

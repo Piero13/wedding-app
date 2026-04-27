@@ -28,7 +28,7 @@ export default function PhotosManager() {
 
     return (
         <AdminLayout>
-            <Container className="py-5">
+            <Container>
                 <h3 className="text-center text-primary hero-title mb-5">
                     Gestion Photos
                 </h3>
@@ -36,12 +36,12 @@ export default function PhotosManager() {
                 <CategoryManager />
 
                 <Row className="mt-4">
-                    <Col lg={5}>
-                    <UploadForm onUploadSuccess={loadPhotos} />
+                    <Col sm={12} lg={5}>
+                        <UploadForm onUploadSuccess={loadPhotos} />
                     </Col>
 
-                    <Col lg={7}>
-                    <PhotoList photos={photos} refresh={loadPhotos} />
+                    <Col sm={12} lg={7}>
+                        <PhotoList photos={photos} refresh={loadPhotos} />
                     </Col>
                 </Row>
             </Container>

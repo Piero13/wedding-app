@@ -33,7 +33,7 @@ export default function AppNavbar() {
   return (
     <Navbar 
       expand="lg" 
-      className="bg-gradient-secondary shadow-sm"
+      className="bg-gradient-secondary shadow-sm h-9"
       sticky="top"
       expanded={expanded}
       onToggle={() => setExpanded(!expanded)}
@@ -45,7 +45,7 @@ export default function AppNavbar() {
 
         <Navbar.Toggle />
         <Navbar.Collapse>
-          <Nav className="ms-auto align-items-center gap-2">
+          <Nav className="ms-auto align-items-center gap-3 my-3">
 
             <Nav.Link className="custom-nav-link" as={Link} to="/" onClick={() => setExpanded(false)}>
               Home
