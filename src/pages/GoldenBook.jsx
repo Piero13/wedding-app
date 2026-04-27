@@ -17,4 +17,4 @@ export default function Goldenbook() {
         </section>
       </div>
   );
-}
+};

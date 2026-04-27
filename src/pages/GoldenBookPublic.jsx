@@ -11,4 +11,4 @@ export default function GoldenbookPublic() {
       <GuestbookList publicView />
     </Container>
   );
-}
+};

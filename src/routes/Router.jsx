@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Gallery from "../pages/Gallery";
-import Goldenbook from "../pages/Goldenbook";
+import Goldenbook from "../pages/GoldenBook";
 import GoldenbookPublic from "../pages/GoldenbookPublic";
 import Guest from "../pages/Guest";
 
