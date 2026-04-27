@@ -33,7 +33,7 @@ export default function AppNavbar() {
   return (
     <Navbar 
       expand="lg" 
-      className="bg-gradient-secondary shadow-sm h-9"
+      className="p-3 bg-gradient-secondary shadow-sm"
       sticky="top"
       expanded={expanded}
       onToggle={() => setExpanded(!expanded)}
@@ -50,10 +50,6 @@ export default function AppNavbar() {
             <Nav.Link className="custom-nav-link" as={Link} to="/" onClick={() => setExpanded(false)}>
               Home
             </Nav.Link>
-
-            {/* <Nav.Link className="nav-link" as={Link} to="/guestbook/public">
-              Livre d'or
-            </Nav.Link> */}
 
             {guest ? (
               <Nav.Link className="custom-nav-link" as={Link} to="/guest/guestbook" onClick={() => setExpanded(false)}>

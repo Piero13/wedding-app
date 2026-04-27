@@ -13,7 +13,7 @@ export default function HeroBanner({ guest }) {
       : "Accéder à l’espace invité";
 
   return (
-    <section className="hero-banner d-flex align-items-center text-center min-vh-75 py-6 py-lg-8">
+    <section className="hero-banner h-lg-20 d-flex align-items-center text-center py-6 py-lg-8">
 
       <Container>
 
