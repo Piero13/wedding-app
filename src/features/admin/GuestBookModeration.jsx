@@ -14,7 +14,7 @@ import {
 } from "react-bootstrap";
 
 /**
- * Moderate guestbook messages
+ * Moderate guestbook messages on goldenbook
  */
 export default function GuestbookModeration() {
   const [messages, setMessages] = useState([]);
