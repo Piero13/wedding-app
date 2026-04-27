@@ -6,12 +6,13 @@ import Gallery from "../pages/Gallery";
 import Goldenbook from "../pages/GoldenBook";
 import GoldenbookPublic from "../pages/GoldenbookPublic";
 import Guest from "../pages/Guest";
-
 import Admin from "../pages/Admin";
 import PhotosManager from "../pages/PhotosManager";
 import GoldenbookManager from "../pages/GoldenbookManager";
 import GuestsManager from "../pages/GuestsManager";
 import CouplePhotosManager from "../pages/CouplePhotosManager";
+
+
 
 import ProtectedAdminRoute from "./ProtectedAdminRoute";
 import ProtectedGuestRoute from "./ProtectedGuestRoute";
