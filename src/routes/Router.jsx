@@ -23,7 +23,7 @@ export default function Router() {
       {/* PUBLIC */}
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/guestbook/public" element={<GoldenBookPublic />} />
+      <Route path="/guestbook/public" element={<GoldenbookPublic />} />
 
       {/* GUEST */}
       <Route
@@ -48,7 +48,7 @@ export default function Router() {
         path="/guest/guestbook"
         element={
           <ProtectedGuestRoute>
-            <GoldenBook />
+            <Goldenbook />
           </ProtectedGuestRoute>
         }
       />
@@ -76,7 +76,7 @@ export default function Router() {
         path="/admin/goldenbook"
         element={
           <ProtectedAdminRoute>
-            <GoldenBookManager />
+            <GoldenbookManager />
           </ProtectedAdminRoute>
         }
       />
