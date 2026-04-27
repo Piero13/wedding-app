@@ -32,7 +32,7 @@ const events = [
 
 export default function StoryTimeline() {
   return (
-    <section className="py-5 text-center bg-gradient-secondaryLight px-md-10 px-lg-25 w-100">
+    <section className="py-6 py-lg-8 text-center px-md-10 px-lg-25 w-100">
         <div className="d-flex flex-column align-items-center">
             <h3 className="timeline-title script text-primary mb-5 fs-1">
                 Notre Histoire

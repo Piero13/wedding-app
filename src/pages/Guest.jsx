@@ -3,14 +3,17 @@ import { Link } from "react-router-dom";
 import { FaRegImages } from "react-icons/fa";
 import { FaBookOpen } from "react-icons/fa6";
 import GuestUploadForm from "../features/goldenbook/GuestUploadForm";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Guest() {
+  const {guest} = useAuth();
+  console.log(guest)
 
   return (
     <Container className="py-5 px-4 text-center d-flex flex-column align-items-center">
 
       <h2 className="mb-5 hero-title text-primary">
-        Bienvenue ❤️
+        Bienvenue {guest.name} ❤️
       </h2>
 
       <div className="w-18 p-3 pb-4 mb-4 rounded-3 border border-primary bg-white d-flex flex-column align-items-center">

@@ -202,9 +202,20 @@ ul {
   }
 }
 
-.countdown h4 {
-  color: $primary;
+.min-vh-75 {
+  min-height: 75vh;
 }
+
+.countdown-card {
+  border-radius: 18px;
+  transition: all 0.25s ease;
+}
+
+.countdown-card:hover {
+  transform: translateY(-4px);
+}
+
+
 
 .shadow-text {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);

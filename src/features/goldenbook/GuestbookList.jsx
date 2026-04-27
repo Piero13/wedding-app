@@ -46,7 +46,7 @@ export default function GuestbookList({ publicView = false }) {
   );
 
   return (
-    <div className="mt-4 w-100">
+    <div className="w-100">
       {messages.length === 0 && <p>Aucun message pour le moment</p>}
 
       {publicView && (

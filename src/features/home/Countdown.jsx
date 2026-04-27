@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 
 export default function Countdown() {
   const weddingDate = new Date("2027-04-30T00:00:00");
@@ -14,10 +14,18 @@ export default function Countdown() {
       if (diff <= 0) return clearInterval(interval);
 
       setTimeLeft({
-        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((diff / 1000 / 60) % 60),
-        seconds: Math.floor((diff / 1000) % 60),
+        Jours: Math.floor(
+          diff / (1000 * 60 * 60 * 24)
+        ),
+        Heures: Math.floor(
+          (diff / (1000 * 60 * 60)) % 24
+        ),
+        Minutes: Math.floor(
+          (diff / 1000 / 60) % 60
+        ),
+        Secondes: Math.floor(
+          (diff / 1000) % 60
+        ),
       });
     }, 1000);
 
@@ -26,17 +34,48 @@ export default function Countdown() {
   }, []);
 
   return (
-    <Container className="text-center py-5">
-      <h3 className="script fs-1 text-primary mb-4">Avant le grand jour</h3>
+    <section className="py-6 py-lg-8 bg-gradient-secondaryLight">
 
-      <div className="d-flex justify-content-center gap-4 countdown">
-        {Object.entries(timeLeft).map(([key, value]) => (
-          <div key={key}>
-            <h4 className="fs-1 shadow-text">{value}</h4>
-            <small>{key}</small>
-          </div>
-        ))}
-      </div>
-    </Container>
+      <Container>
+
+        <div className="text-center mb-5">
+          <h2 className="script text-primary fs-1 mb-3">
+            Avant le grand jour
+          </h2>
+
+          <p className="text-muted">
+            Le compte à rebours est lancé.
+          </p>
+        </div>
+
+        <Row className="g-4 justify-content-center">
+
+          {Object.entries(timeLeft).map(
+            ([key, value]) => (
+              <Col
+                xs={6}
+                md={2}
+                key={key}
+              >
+                <Card className="border-primary text-center p-4 h-100 countdown-card bs-primaryDark">
+
+                  <h2 className="text-primary mb-2">
+                    {value}
+                  </h2>
+
+                  <small className="text-muted">
+                    {key}
+                  </small>
+
+                </Card>
+              </Col>
+            )
+          )}
+
+        </Row>
+
+      </Container>
+
+    </section>
   );
 }

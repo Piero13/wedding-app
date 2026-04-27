@@ -35,10 +35,11 @@ export default function GuestbookForm() {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="mb-4 w-100 w-md-75 me-md-4 d-flex flex-column">
+    <Form onSubmit={handleSubmit} className="mb-4 w-100 w-md-75 me-md-4 d-flex flex-column border border-primary p-3 rounded">
+      <h3 className="mb-3 fs-5 text-center text-lg-start">Laissez-nous un message</h3>
 
       <Form.Group className="mb-3">
-        <Form.Label className="mb-1">Prénom</Form.Label>
+        <Form.Label className="mb-1">Prénom *</Form.Label>
 
         <Form.Control
           placeholder="Prénom"
@@ -76,7 +77,7 @@ export default function GuestbookForm() {
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label className="mb-1">Message</Form.Label>
+        <Form.Label className="mb-1">Message *</Form.Label>
 
         <Form.Control
           placeholder="Votre message"
@@ -90,7 +91,9 @@ export default function GuestbookForm() {
         />        
       </Form.Group>
 
-      <Button type="submit" disabled={!form.message} variant="primary" className="border-primaryDark bs-dark w-10 mx-auto mx-md-0 rounded-5">
+      <p className="mb-3 fs-7">* Champs obligatoires</p>
+
+      <Button type="submit" disabled={!form.message} variant="primary" className="border-primaryDark bs-dark w-10 mx-auto rounded-5">
         Envoyer
       </Button>
     </Form>

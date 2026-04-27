@@ -41,12 +41,12 @@ export default function CoupleGallery() {
   if (!photos.length) return null;
 
   return (
-    <section className="py-6 bg-gradient-secondaryLight">
+    <section className="py-6 py-lg-8 bg-gradient-secondaryLight">
 
       <Container>
 
         {/* HEADER */}
-        <div className="text-center mb-5">
+        <div className="text-center mb-6 mb-lg-8">
 
           <div className="mb-3">
             <FaHeart
@@ -95,7 +95,7 @@ export default function CoupleGallery() {
                 }}
               >
                 <div
-                  className="couple-photo-card"
+                  className="couple-photo-card border border-primary bs-dark"
                   onClick={() =>
                     setSelectedIndex(index)
                   }

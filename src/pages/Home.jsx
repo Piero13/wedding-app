@@ -10,11 +10,11 @@ export default function Home() {
   const { guest } = useAuth();
 
   return (
-    <div>
+    <main>
       <HeroBanner guest={guest} />
-      <StoryTimeline />
       <Countdown />
+      <StoryTimeline />
       <CoupleGallery />
-    </div>
+    </main>
   );
 }
