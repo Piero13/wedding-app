@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap";
 import AdminLayout from "../layouts/AdminLayout";
 import GuestbookModeration from "../features/admin/GuestbookModeration";
 
-export default function GoldenBookManager() {
+export default function GoldenbookManager() {
   return (
     <AdminLayout>
         <Container className="py-5">

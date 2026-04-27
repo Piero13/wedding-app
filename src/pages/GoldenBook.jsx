@@ -2,7 +2,7 @@ import GuestbookForm from "../features/goldenbook/GuestbookForm";
 import GuestbookList from "../features/goldenbook/GuestbookList";
 
 
-export default function GoldenBook() {
+export default function Goldenbook() {
   return (
       <div className="container py-4">
 
