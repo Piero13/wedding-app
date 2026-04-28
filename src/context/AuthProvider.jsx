@@ -2,70 +2,58 @@ import { useEffect, useState } from "react";
 import { supabase } from "../services/supabase/supabaseClient";
 import { AuthContext } from "./AuthContext";
 
-/**
- * Auth provider
- */
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(false);
   const [guest, setGuest] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  /**
-   * Check admin
-   */
-  const checkAdmin = async (userId) => {
+  const fetchAdminStatus = async (uid) => {
     const { data } = await supabase
       .from("admins")
       .select("id")
-      .eq("id", userId)
+      .eq("id", uid)
       .maybeSingle();
 
-    setIsAdmin(!!data);
+    return !!data;
+  };
+
+  const hydrateAuth = async (session) => {
+    const currentUser = session?.user ?? null;
+
+    setUser(currentUser);
+
+    if (currentUser) {
+      const admin = await fetchAdminStatus(currentUser.id);
+      setIsAdmin(admin);
+    } else {
+      setIsAdmin(false);
+    }
+
+    const storedGuest = localStorage.getItem("guest");
+
+    if (storedGuest) {
+      setGuest(JSON.parse(storedGuest));
+    } else {
+      setGuest(null);
+    }
+
+    setLoading(false);
   };
 
   useEffect(() => {
-    /**
-     * Init session
-     */
-    const init = async () => {
-      const { data } = await supabase.auth.getSession();
-      const currentUser = data.session?.user ?? null;
+    supabase.auth.getSession().then(({ data }) => {
+      hydrateAuth(data.session);
+    });
 
-      setUser(currentUser);
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      hydrateAuth(session);
+    });
 
-      if (currentUser) {
-        await checkAdmin(currentUser.id);
-      }
-
-      // 🔥 récupérer guest depuis localStorage
-      const storedGuest = localStorage.getItem("guest");
-      if (storedGuest) {
-        setGuest(JSON.parse(storedGuest));
-      }
-      setLoading(false)
-    };
-
-    init();
-
-    /**
-     * Listen auth changes
-     */
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      async (_, session) => {
-        const currentUser = session?.user ?? null;
-
-        setUser(currentUser);
-
-        if (currentUser) {
-          await checkAdmin(currentUser.id);
-        } else {
-          setIsAdmin(false);
-        }
-      }
-    );
-
-    return () => listener.subscription.unsubscribe();
+    return () => subscription.unsubscribe();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loginGuest = (guestData) => {
@@ -73,9 +61,6 @@ export const AuthProvider = ({ children }) => {
     setGuest(guestData);
   };
 
-  /**
- * Logout user (admin or guest)
- */
   const logout = async () => {
     await supabase.auth.signOut();
 
@@ -83,20 +68,20 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("guest_access");
 
     setUser(null);
-    setIsAdmin(false);
     setGuest(null);
+    setIsAdmin(false);
   };
 
   return (
     <AuthContext.Provider
       value={{
         user,
-        isAdmin,
         guest,
         isGuest: !!guest,
+        isAdmin,
+        loading,
         loginGuest,
         logout,
-        loading,
       }}
     >
       {!loading && children}

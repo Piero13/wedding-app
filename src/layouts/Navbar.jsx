@@ -104,7 +104,7 @@ export default function AppNavbar() {
             {/* Admin */}
             {isAdmin && (
               <>
-                <Nav.Link className="custom-nav-link" as={Link} to="/admin">
+                <Nav.Link className="custom-nav-link" as={Link} to="/admin" onClick={() => setExpanded(false)}>
                   Admin
                 </Nav.Link>
 
