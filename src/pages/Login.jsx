@@ -42,6 +42,7 @@ export default function Login() {
     }
 
     navigate("/admin");
+    showToast("Connecté");
   };
 
   /**
@@ -59,6 +60,7 @@ export default function Login() {
     loginGuest(data);
 
     navigate("/guest");
+    showToast("Connecté");
   };
 
   return (
