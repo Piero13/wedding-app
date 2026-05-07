@@ -10,6 +10,10 @@ export default function PhotoList({ photos, refresh }) {
   const { showToast } = useToast();
 
   const deletePhoto = async (photo) => {
+    const confirmDelete = window.confirm("Supprimer cette photo?");
+
+    if(!confirmDelete) return
+    
     try {
       // 🔥 delete storage
       await supabase.storage

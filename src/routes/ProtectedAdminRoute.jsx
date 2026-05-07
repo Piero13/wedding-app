@@ -8,17 +8,17 @@ import { useAuth } from "../hooks/useAuth";
 export default function ProtectedAdminRoute({ children }) {
   const { user, isAdmin, loading } = useAuth();
 
-  // attend restauration session
+  // waiting session restauration
   if (loading && !user) {
     return null;
   }
 
-  // pas connecté
+  // not connected
   if (!user) {
     return <Navigate to="/login" replace />;
   }
 
-  // connecté mais pas admin
+  // connected not admin
   if (!isAdmin) {
     return <Navigate to="/" replace />;
   }

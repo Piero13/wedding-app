@@ -22,7 +22,7 @@ export default function AdminSidebar({ closeMenu }) {
   ];
 
   return (
-    <aside className="admin-sidebar">
+    <aside className="admin-sidebar h-100">
 
       {/* HEADER */}
       <div className="p-4 text-center border-bottom border-primary position-relative">

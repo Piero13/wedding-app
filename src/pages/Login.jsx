@@ -56,7 +56,6 @@ export default function Login() {
       return;
     }
 
-    // ✅ stocker l'objet household complet
     loginGuest(data);
 
     navigate("/guest");
@@ -94,7 +93,6 @@ export default function Login() {
 
           <Form.Group className="mb-3">
             <Form.Label>Mot de passe</Form.Label>
-
             <div className="position-relative">
               <Form.Control
                 type={showPassword ? "text" : "password"}

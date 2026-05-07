@@ -1,47 +1,21 @@
 import { useState } from "react";
-import {
-  Card,
-  Form,
-  Button,
-  Spinner,
-} from "react-bootstrap";
-
-import {
-  FaUpload,
-  FaImage,
-} from "react-icons/fa";
+import { Card, Form, Button, Spinner, } from "react-bootstrap";
+import { FaUpload, FaImage, } from "react-icons/fa";
 
 import { useToast } from "../../hooks/useToast";
 import CropModal from "../../components/common/CropModal";
 
 import { supabase } from "../../services/supabase/supabaseClient";
 
-import {
-  createCouplePhoto,
-  getCouplePhotosCount,
-} from "../../services/admin/couplePhotosService";
+import { createCouplePhoto, getCouplePhotosCount, } from "../../services/admin/couplePhotosService";
 
-export default function CoupleUploadForm({
-  onUploadSuccess,
-}) {
+export default function CoupleUploadForm({ onUploadSuccess, }) {
   const { showToast } = useToast();
-
-  const [loading, setLoading] =
-    useState(false);
-
-  const [file, setFile] =
-    useState(null);
-
-  const [preview, setPreview] =
-    useState(null);
-
-  const [showCrop, setShowCrop] =
-    useState(false);
-
-  const [form, setForm] = useState({
-    title: "",
-    description: "",
-  });
+  const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [showCrop, setShowCrop] = useState(false);
+  const [form, setForm] = useState({ title: "", description: "", });
 
   /**
    * Choix fichier
@@ -52,8 +26,7 @@ export default function CoupleUploadForm({
 
     if (!selected) return;
 
-    const reader =
-      new FileReader();
+    const reader = new FileReader();
 
     reader.onload = () => {
       setPreview(reader.result);
@@ -66,9 +39,7 @@ export default function CoupleUploadForm({
   /**
    * Fin crop
    */
-  const handleCropDone = (
-    croppedBlob
-  ) => {
+  const handleCropDone = (croppedBlob) => {
     const croppedFile =
       new File(
         [croppedBlob],
@@ -85,33 +56,25 @@ export default function CoupleUploadForm({
   /**
    * Upload storage
    */
-  const uploadImage =
-    async (imageFile) => {
+  const uploadImage = async (imageFile) => {
       const ext = "jpg";
 
-      const fileName =
-        crypto.randomUUID() +
-        "." +
-        ext;
+      const fileName = crypto.randomUUID() + "." + ext;
 
-      const path =
-        "originals/" + fileName;
+      const path = "originals/" + fileName;
 
-      const { error } =
-        await supabase.storage
+      const { error } = await supabase.storage
           .from("couple-gallery")
           .upload(path, imageFile);
 
       if (error) throw error;
 
-      const { data } =
-        supabase.storage
+      const { data } = supabase.storage
           .from("couple-gallery")
           .getPublicUrl(path);
 
       return {
-        image_url:
-          data.publicUrl,
+        image_url: data.publicUrl,
         image_path: path,
       };
     };
@@ -124,10 +87,7 @@ export default function CoupleUploadForm({
       e.preventDefault();
 
       if (!file) {
-        showToast(
-          "Choisis une image",
-          "danger"
-        );
+        showToast("Choisis une image", "danger");
         return;
       }
 
@@ -139,15 +99,11 @@ export default function CoupleUploadForm({
           image_path,
         } = await uploadImage(file);
 
-        const total =
-          await getCouplePhotosCount();
+        const total = await getCouplePhotosCount();
 
         await createCouplePhoto({
-          title:
-            form.title ||
-            "Souvenir",
-          description:
-            form.description,
+          title: form.title || "Souvenir",
+          description: form.description,
           image_url,
           image_path,
           is_active: true,
@@ -155,9 +111,7 @@ export default function CoupleUploadForm({
             total + 1,
         });
 
-        showToast(
-          "Photo ajoutée ❤️"
-        );
+        showToast("Photo ajoutée ❤️");
 
         setForm({
           title: "",
@@ -174,10 +128,7 @@ export default function CoupleUploadForm({
       } catch (err) {
         console.error(err);
 
-        showToast(
-          "Erreur upload",
-          "danger"
-        );
+        showToast("Erreur upload", "danger");
       }
 
       setLoading(false);
@@ -192,17 +143,10 @@ export default function CoupleUploadForm({
             Ajouter une photo
           </h4>
 
-          <p className="text-muted mb-0">
-            Galerie affichée
-            sur la Home.
-          </p>
+          <p className="text-muted mb-0">Galerie affichée sur la Home.</p>
         </div>
 
-        <Form
-          onSubmit={
-            handleSubmit
-          }
-        >
+        <Form onSubmit={handleSubmit}>
           {/* TITLE */}
           <Form.Group className="mb-3">
             <Form.Label>
@@ -214,9 +158,7 @@ export default function CoupleUploadForm({
               onChange={(e) =>
                 setForm({
                   ...form,
-                  title:
-                    e.target
-                      .value,
+                  title: e.target.value,
                 })
               }
               placeholder="Ex : Week-end à Paris"
@@ -225,22 +167,16 @@ export default function CoupleUploadForm({
 
           {/* DESCRIPTION */}
           <Form.Group className="mb-3">
-            <Form.Label>
-              Description
-            </Form.Label>
+            <Form.Label>Description</Form.Label>
 
             <Form.Control
               as="textarea"
               rows={3}
-              value={
-                form.description
-              }
+              value={ form.description }
               onChange={(e) =>
                 setForm({
                   ...form,
-                  description:
-                    e.target
-                      .value,
+                  description: e.target.value,
                 })
               }
               placeholder="Petit souvenir..."
@@ -249,16 +185,12 @@ export default function CoupleUploadForm({
 
           {/* FILE */}
           <Form.Group className="mb-3">
-            <Form.Label>
-              Image
-            </Form.Label>
+            <Form.Label>Image</Form.Label>
 
             <Form.Control
               type="file"
               accept="image/*"
-              onChange={
-                handleFileChange
-              }
+              onChange={handleFileChange}
             />
           </Form.Group>
 
@@ -266,9 +198,7 @@ export default function CoupleUploadForm({
           {file && (
             <div className="mb-4">
               <img
-                src={URL.createObjectURL(
-                  file
-                )}
+                src={URL.createObjectURL(file)}
                 alt="preview"
                 className="img-fluid rounded"
               />
@@ -279,9 +209,7 @@ export default function CoupleUploadForm({
             type="submit"
             variant="primary"
             className="w-100 border-primaryDark"
-            disabled={
-              loading
-            }
+            disabled={loading}
           >
             {loading ? (
               <Spinner size="sm" />
@@ -300,12 +228,8 @@ export default function CoupleUploadForm({
       <CropModal
         show={showCrop}
         image={preview}
-        onClose={() =>
-          setShowCrop(false)
-        }
-        onCropDone={
-          handleCropDone
-        }
+        onClose={() => setShowCrop(false)}
+        onCropDone={handleCropDone}
       />
     </>
   );

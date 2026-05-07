@@ -74,10 +74,6 @@ export default function CategoryManager({ onUpdate }) {
             </ul>          
           </Col>
         </Row>
-
-
-
-
       </Container>
     </section>
   );
