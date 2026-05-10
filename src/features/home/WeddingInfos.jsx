@@ -104,11 +104,12 @@ export default function WeddingInfos() {
                 </div>
 
                 {/* Card */}
-                <Row className="g-6 g-lg-4">
+                <Row className="g-6 g-lg-7">
                     {sections.map((section, index) => (
                         <Col 
                             xs={12} 
-                            md={4} 
+                            md={6} 
+                            lg={4}
                             key={section.title}
                         >
                         
