@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import { FaHeart } from "react-icons/fa";
 
 import { fetchPublicCouplePhotos } from "../../services/admin/couplePhotosService";
 import PhotoModal from "../../features/photos/PhotoModal";
@@ -41,21 +40,14 @@ export default function CoupleGallery() {
   if (!photos.length) return null;
 
   return (
-    <section className="py-6 py-lg-8 bg-gradient-secondaryLight">
+    <section className="py-6 py-lg-8 ">
 
       <Container>
 
         {/* HEADER */}
         <div className="text-center mb-6 mb-lg-8">
 
-          <div className="mb-3">
-            <FaHeart
-              className="text-primary"
-              size={28}
-            />
-          </div>
-
-          <h2 className="hero-title text-primary mb-3">
+          <h2 className="script text-primary fs-1 mb-3">
             Nos Plus Beaux Souvenirs
           </h2>
 

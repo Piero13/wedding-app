@@ -387,3 +387,48 @@ ul {
     height: 300px;
   }
 }
+
+.wedding-info-card {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.wedding-info-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.12);
+}
+
+.wedding-info-photo {
+  overflow: hidden;
+}
+
+.wedding-info-photo img {
+  object-fit: cover;
+
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease;
+}
+
+.wedding-info-photo:hover img {
+  transform: scale(1.05);
+  opacity: 0.92;
+}
+
+.wedding-info-swiper {
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.wedding-info-swiper .swiper-pagination-bullet {
+  background: var(--bs-primary);
+  opacity: 0.5;
+}
+
+.wedding-info-swiper
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}

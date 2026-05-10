@@ -4,7 +4,7 @@ import HeroBanner from "../features/home/HeroBanner";
 import StoryTimeline from "../features/home/StoryTimeline";
 import Countdown from "../features/home/Countdown";
 import CoupleGallery from "../features/home/CoupleGallery";
-
+import WeddingInfos from "../features/home/WeddingInfos";
 
 export default function Home() {
   const { guest } = useAuth();
@@ -13,6 +13,7 @@ export default function Home() {
     <main>
       <HeroBanner guest={guest} />
       <Countdown />
+      <WeddingInfos />
       <StoryTimeline />
       <CoupleGallery />
     </main>
