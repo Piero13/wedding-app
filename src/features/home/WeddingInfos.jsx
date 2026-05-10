@@ -120,7 +120,7 @@ export default function WeddingInfos() {
                                 transition={{ duration: 0.5, delay: index * 0.15, }}
                             >
                                 <Card className="h-100 border-primary bs-primaryDark wedding-info-card">
-                                    <Card.Body className="p-4 d-flex flex-column ">
+                                    <Card.Body className="p-3 d-flex flex-column ">
 
                                         {/* Header */}
                                         <div className="d-flex justify-content-center align-items-center mb-3">
