@@ -125,7 +125,7 @@ export default function WeddingInfos() {
                                         {/* Header */}
                                         <div className="d-flex justify-content-center align-items-center mb-3">
                                             {/* Icon */}
-                                            <div className="text-primary me-3">
+                                            <div className="text-primary me-2">
                                                 {section.icon}
                                             </div>
 
