@@ -18,43 +18,37 @@ export default function WeddingInfos() {
     const allPhotos = [
         {
             id: 1,
-            image_url:
-                "/images/wedding/mairie.png",
+            image_url: "/images/wedding/mairie.png",
             title: "Mairie du 10ème",
         },
 
         {
             id: 2,
-            image_url:
-                "/images/wedding/parc_1.png",
+            image_url: "/images/wedding/parc_1.png",
             title: "Parc de la Maison Blanche",
         },
 
         {
             id: 3,
-            image_url:
-                "/images/wedding/parc_2.png",
+            image_url: "/images/wedding/parc_2.png",
             title: "Parc de la Maison Blanche",
         },
 
         {
             id: 4,
-            image_url:
-                "/images/wedding/parc_3.png",
+            image_url: "/images/wedding/parc_3.png",
             title: "Parc de la Maison Blanche",
         },
 
         {
             id: 5,
-            image_url:
-                "/images/wedding/jardin_passions_1.png",
+            image_url: "/images/wedding/jardin_passions_1.png",
             title: "Le Jardin des Passions - l'extérieur",
         },
 
         {
             id: 6,
-            image_url:
-                "/images/wedding/jardin_passions_2.png",
+            image_url: "/images/wedding/jardin_passions_2.png",
             title: "Le Jardin des Passions - la salle",
         },
     ];
@@ -103,7 +97,7 @@ export default function WeddingInfos() {
                     </p>
                 </div>
 
-                {/* Card */}
+                {/* Event card */}
                 <Row className="g-6 g-lg-7">
                     {sections.map((section, index) => (
                         <Col 
@@ -124,12 +118,10 @@ export default function WeddingInfos() {
 
                                         {/* Header */}
                                         <div className="d-flex justify-content-center align-items-center mb-3">
-                                            {/* Icon */}
                                             <div className="text-primary me-2">
                                                 {section.icon}
                                             </div>
 
-                                            {/* Title */}
                                             <h3 className="mb-0">
                                                 {section.title}
                                             </h3>
@@ -140,6 +132,7 @@ export default function WeddingInfos() {
                                             <div className="me-2">
                                                 <FaClock />
                                             </div>
+
                                             <p className="mb-0">{section.hour}</p>
                                         </div>
 
@@ -148,6 +141,7 @@ export default function WeddingInfos() {
                                             <div className="me-2">
                                                 <FaLocationDot />
                                             </div>
+
                                             <p className="mb-0">{section.address}</p>
                                         </div>
 
